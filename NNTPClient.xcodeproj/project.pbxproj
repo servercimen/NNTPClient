@@ -1,0 +1,484 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		46476DBC13DAF53300D32152 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 46476DBB13DAF53300D32152 /* UIKit.framework */; };
+		46476DBE13DAF53300D32152 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 46476DBD13DAF53300D32152 /* Foundation.framework */; };
+		46476DC013DAF53300D32152 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 46476DBF13DAF53300D32152 /* CoreGraphics.framework */; };
+		46476DC213DAF53300D32152 /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 46476DC113DAF53300D32152 /* CoreData.framework */; };
+		46476DC813DAF53300D32152 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 46476DC613DAF53300D32152 /* InfoPlist.strings */; };
+		46476DCB13DAF53300D32152 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 46476DCA13DAF53300D32152 /* main.m */; };
+		46476DCE13DAF53300D32152 /* NNTPClientAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 46476DCD13DAF53300D32152 /* NNTPClientAppDelegate.m */; };
+		46476DD113DAF53300D32152 /* NNTPClient.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 46476DCF13DAF53300D32152 /* NNTPClient.xcdatamodeld */; };
+		46476DD413DAF53300D32152 /* MainWindow.xib in Resources */ = {isa = PBXBuildFile; fileRef = 46476DD213DAF53300D32152 /* MainWindow.xib */; };
+		46476DD713DAF53300D32152 /* RootViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 46476DD613DAF53300D32152 /* RootViewController.m */; };
+		46476DDA13DAF53300D32152 /* RootViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 46476DD813DAF53300D32152 /* RootViewController.xib */; };
+		46476DE113DAF53300D32152 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 46476DBB13DAF53300D32152 /* UIKit.framework */; };
+		46476DE213DAF53300D32152 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 46476DBD13DAF53300D32152 /* Foundation.framework */; };
+		46476DE313DAF53300D32152 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 46476DBF13DAF53300D32152 /* CoreGraphics.framework */; };
+		46476DE413DAF53300D32152 /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 46476DC113DAF53300D32152 /* CoreData.framework */; };
+		46476DEC13DAF53300D32152 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 46476DEA13DAF53300D32152 /* InfoPlist.strings */; };
+		46476DEF13DAF53400D32152 /* NNTPClientTests.h in Resources */ = {isa = PBXBuildFile; fileRef = 46476DEE13DAF53400D32152 /* NNTPClientTests.h */; };
+		46476DF113DAF53400D32152 /* NNTPClientTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 46476DF013DAF53400D32152 /* NNTPClientTests.m */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		46476DE513DAF53300D32152 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 46476DAE13DAF53300D32152 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 46476DB613DAF53300D32152;
+			remoteInfo = NNTPClient;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		46476DB713DAF53300D32152 /* NNTPClient.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = NNTPClient.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		46476DBB13DAF53300D32152 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
+		46476DBD13DAF53300D32152 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
+		46476DBF13DAF53300D32152 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
+		46476DC113DAF53300D32152 /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = System/Library/Frameworks/CoreData.framework; sourceTree = SDKROOT; };
+		46476DC513DAF53300D32152 /* NNTPClient-Info.plist */ = {isa = PBXFileReference; path = "NNTPClient-Info.plist"; sourceTree = "<group>"; };
+		46476DC713DAF53300D32152 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		46476DC913DAF53300D32152 /* NNTPClient-Prefix.pch */ = {isa = PBXFileReference; path = "NNTPClient-Prefix.pch"; sourceTree = "<group>"; };
+		46476DCA13DAF53300D32152 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		46476DCC13DAF53300D32152 /* NNTPClientAppDelegate.h */ = {isa = PBXFileReference; path = NNTPClientAppDelegate.h; sourceTree = "<group>"; };
+		46476DCD13DAF53300D32152 /* NNTPClientAppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = NNTPClientAppDelegate.m; sourceTree = "<group>"; };
+		46476DD013DAF53300D32152 /* NNTPClient.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = NNTPClient.xcdatamodel; sourceTree = "<group>"; };
+		46476DD313DAF53300D32152 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/MainWindow.xib; sourceTree = "<group>"; };
+		46476DD513DAF53300D32152 /* RootViewController.h */ = {isa = PBXFileReference; path = RootViewController.h; sourceTree = "<group>"; };
+		46476DD613DAF53300D32152 /* RootViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RootViewController.m; sourceTree = "<group>"; };
+		46476DD913DAF53300D32152 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/RootViewController.xib; sourceTree = "<group>"; };
+		46476DE013DAF53300D32152 /* NNTPClientTests.octest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = NNTPClientTests.octest; sourceTree = BUILT_PRODUCTS_DIR; };
+		46476DE913DAF53300D32152 /* NNTPClientTests-Info.plist */ = {isa = PBXFileReference; path = "NNTPClientTests-Info.plist"; sourceTree = "<group>"; };
+		46476DEB13DAF53300D32152 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		46476DED13DAF53400D32152 /* NNTPClientTests-Prefix.pch */ = {isa = PBXFileReference; path = "NNTPClientTests-Prefix.pch"; sourceTree = "<group>"; };
+		46476DEE13DAF53400D32152 /* NNTPClientTests.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = NNTPClientTests.h; sourceTree = "<group>"; };
+		46476DF013DAF53400D32152 /* NNTPClientTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = NNTPClientTests.m; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		46476DB413DAF53300D32152 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				46476DBC13DAF53300D32152 /* UIKit.framework in Frameworks */,
+				46476DBE13DAF53300D32152 /* Foundation.framework in Frameworks */,
+				46476DC013DAF53300D32152 /* CoreGraphics.framework in Frameworks */,
+				46476DC213DAF53300D32152 /* CoreData.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		46476DDC13DAF53300D32152 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				46476DE113DAF53300D32152 /* UIKit.framework in Frameworks */,
+				46476DE213DAF53300D32152 /* Foundation.framework in Frameworks */,
+				46476DE313DAF53300D32152 /* CoreGraphics.framework in Frameworks */,
+				46476DE413DAF53300D32152 /* CoreData.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		46476DAC13DAF53300D32152 = {
+			isa = PBXGroup;
+			children = (
+				46476DC313DAF53300D32152 /* NNTPClient */,
+				46476DE713DAF53300D32152 /* NNTPClientTests */,
+				46476DBA13DAF53300D32152 /* Frameworks */,
+				46476DB813DAF53300D32152 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		46476DB813DAF53300D32152 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				46476DB713DAF53300D32152 /* NNTPClient.app */,
+				46476DE013DAF53300D32152 /* NNTPClientTests.octest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		46476DBA13DAF53300D32152 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				46476DBB13DAF53300D32152 /* UIKit.framework */,
+				46476DBD13DAF53300D32152 /* Foundation.framework */,
+				46476DBF13DAF53300D32152 /* CoreGraphics.framework */,
+				46476DC113DAF53300D32152 /* CoreData.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		46476DC313DAF53300D32152 /* NNTPClient */ = {
+			isa = PBXGroup;
+			children = (
+				46476DCC13DAF53300D32152 /* NNTPClientAppDelegate.h */,
+				46476DCD13DAF53300D32152 /* NNTPClientAppDelegate.m */,
+				46476DD213DAF53300D32152 /* MainWindow.xib */,
+				46476DD513DAF53300D32152 /* RootViewController.h */,
+				46476DD613DAF53300D32152 /* RootViewController.m */,
+				46476DD813DAF53300D32152 /* RootViewController.xib */,
+				46476DCF13DAF53300D32152 /* NNTPClient.xcdatamodeld */,
+				46476DC413DAF53300D32152 /* Supporting Files */,
+			);
+			path = NNTPClient;
+			sourceTree = "<group>";
+		};
+		46476DC413DAF53300D32152 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				46476DC513DAF53300D32152 /* NNTPClient-Info.plist */,
+				46476DC613DAF53300D32152 /* InfoPlist.strings */,
+				46476DC913DAF53300D32152 /* NNTPClient-Prefix.pch */,
+				46476DCA13DAF53300D32152 /* main.m */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		46476DE713DAF53300D32152 /* NNTPClientTests */ = {
+			isa = PBXGroup;
+			children = (
+				46476DEE13DAF53400D32152 /* NNTPClientTests.h */,
+				46476DF013DAF53400D32152 /* NNTPClientTests.m */,
+				46476DE813DAF53300D32152 /* Supporting Files */,
+			);
+			path = NNTPClientTests;
+			sourceTree = "<group>";
+		};
+		46476DE813DAF53300D32152 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				46476DE913DAF53300D32152 /* NNTPClientTests-Info.plist */,
+				46476DEA13DAF53300D32152 /* InfoPlist.strings */,
+				46476DED13DAF53400D32152 /* NNTPClientTests-Prefix.pch */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		46476DB613DAF53300D32152 /* NNTPClient */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 46476DF413DAF53400D32152 /* Build configuration list for PBXNativeTarget "NNTPClient" */;
+			buildPhases = (
+				46476DB313DAF53300D32152 /* Sources */,
+				46476DB413DAF53300D32152 /* Frameworks */,
+				46476DB513DAF53300D32152 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = NNTPClient;
+			productName = NNTPClient;
+			productReference = 46476DB713DAF53300D32152 /* NNTPClient.app */;
+			productType = "com.apple.product-type.application";
+		};
+		46476DDF13DAF53300D32152 /* NNTPClientTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 46476DF713DAF53400D32152 /* Build configuration list for PBXNativeTarget "NNTPClientTests" */;
+			buildPhases = (
+				46476DDB13DAF53300D32152 /* Sources */,
+				46476DDC13DAF53300D32152 /* Frameworks */,
+				46476DDD13DAF53300D32152 /* Resources */,
+				46476DDE13DAF53300D32152 /* ShellScript */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				46476DE613DAF53300D32152 /* PBXTargetDependency */,
+			);
+			name = NNTPClientTests;
+			productName = NNTPClientTests;
+			productReference = 46476DE013DAF53300D32152 /* NNTPClientTests.octest */;
+			productType = "com.apple.product-type.bundle";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		46476DAE13DAF53300D32152 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				ORGANIZATIONNAME = SpeedDate.com;
+			};
+			buildConfigurationList = 46476DB113DAF53300D32152 /* Build configuration list for PBXProject "NNTPClient" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+			);
+			mainGroup = 46476DAC13DAF53300D32152;
+			productRefGroup = 46476DB813DAF53300D32152 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				46476DB613DAF53300D32152 /* NNTPClient */,
+				46476DDF13DAF53300D32152 /* NNTPClientTests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		46476DB513DAF53300D32152 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				46476DC813DAF53300D32152 /* InfoPlist.strings in Resources */,
+				46476DD413DAF53300D32152 /* MainWindow.xib in Resources */,
+				46476DDA13DAF53300D32152 /* RootViewController.xib in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		46476DDD13DAF53300D32152 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				46476DEC13DAF53300D32152 /* InfoPlist.strings in Resources */,
+				46476DEF13DAF53400D32152 /* NNTPClientTests.h in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		46476DDE13DAF53300D32152 /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "# Run the unit tests in this test bundle.\n\"${SYSTEM_DEVELOPER_DIR}/Tools/RunUnitTests\"\n";
+		};
+/* End PBXShellScriptBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		46476DB313DAF53300D32152 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				46476DCB13DAF53300D32152 /* main.m in Sources */,
+				46476DCE13DAF53300D32152 /* NNTPClientAppDelegate.m in Sources */,
+				46476DD113DAF53300D32152 /* NNTPClient.xcdatamodeld in Sources */,
+				46476DD713DAF53300D32152 /* RootViewController.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		46476DDB13DAF53300D32152 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				46476DF113DAF53400D32152 /* NNTPClientTests.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		46476DE613DAF53300D32152 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 46476DB613DAF53300D32152 /* NNTPClient */;
+			targetProxy = 46476DE513DAF53300D32152 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin PBXVariantGroup section */
+		46476DC613DAF53300D32152 /* InfoPlist.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				46476DC713DAF53300D32152 /* en */,
+			);
+			name = InfoPlist.strings;
+			sourceTree = "<group>";
+		};
+		46476DD213DAF53300D32152 /* MainWindow.xib */ = {
+			isa = PBXVariantGroup;
+			children = (
+				46476DD313DAF53300D32152 /* en */,
+			);
+			name = MainWindow.xib;
+			sourceTree = "<group>";
+		};
+		46476DD813DAF53300D32152 /* RootViewController.xib */ = {
+			isa = PBXVariantGroup;
+			children = (
+				46476DD913DAF53300D32152 /* en */,
+			);
+			name = RootViewController.xib;
+			sourceTree = "<group>";
+		};
+		46476DEA13DAF53300D32152 /* InfoPlist.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				46476DEB13DAF53300D32152 /* en */,
+			);
+			name = InfoPlist.strings;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		46476DF213DAF53400D32152 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = DEBUG;
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				GCC_VERSION = com.apple.compilers.llvmgcc42;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 4.3;
+				SDKROOT = iphoneos;
+			};
+			name = Debug;
+		};
+		46476DF313DAF53400D32152 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_VERSION = com.apple.compilers.llvmgcc42;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 4.3;
+				OTHER_CFLAGS = "-DNS_BLOCK_ASSERTIONS=1";
+				SDKROOT = iphoneos;
+			};
+			name = Release;
+		};
+		46476DF513DAF53400D32152 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				COPY_PHASE_STRIP = NO;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "NNTPClient/NNTPClient-Prefix.pch";
+				INFOPLIST_FILE = "NNTPClient/NNTPClient-Info.plist";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				WRAPPER_EXTENSION = app;
+			};
+			name = Debug;
+		};
+		46476DF613DAF53400D32152 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				COPY_PHASE_STRIP = YES;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "NNTPClient/NNTPClient-Prefix.pch";
+				INFOPLIST_FILE = "NNTPClient/NNTPClient-Info.plist";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				VALIDATE_PRODUCT = YES;
+				WRAPPER_EXTENSION = app;
+			};
+			name = Release;
+		};
+		46476DF813DAF53400D32152 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				BUNDLE_LOADER = "$(BUILT_PRODUCTS_DIR)/NNTPClient.app/NNTPClient";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(SDKROOT)/Developer/Library/Frameworks",
+					"$(DEVELOPER_LIBRARY_DIR)/Frameworks",
+				);
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "NNTPClientTests/NNTPClientTests-Prefix.pch";
+				INFOPLIST_FILE = "NNTPClientTests/NNTPClientTests-Info.plist";
+				OTHER_LDFLAGS = (
+					"-framework",
+					SenTestingKit,
+				);
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUNDLE_LOADER)";
+				WRAPPER_EXTENSION = octest;
+			};
+			name = Debug;
+		};
+		46476DF913DAF53400D32152 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				BUNDLE_LOADER = "$(BUILT_PRODUCTS_DIR)/NNTPClient.app/NNTPClient";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(SDKROOT)/Developer/Library/Frameworks",
+					"$(DEVELOPER_LIBRARY_DIR)/Frameworks",
+				);
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "NNTPClientTests/NNTPClientTests-Prefix.pch";
+				INFOPLIST_FILE = "NNTPClientTests/NNTPClientTests-Info.plist";
+				OTHER_LDFLAGS = (
+					"-framework",
+					SenTestingKit,
+				);
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUNDLE_LOADER)";
+				WRAPPER_EXTENSION = octest;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		46476DB113DAF53300D32152 /* Build configuration list for PBXProject "NNTPClient" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				46476DF213DAF53400D32152 /* Debug */,
+				46476DF313DAF53400D32152 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		46476DF413DAF53400D32152 /* Build configuration list for PBXNativeTarget "NNTPClient" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				46476DF513DAF53400D32152 /* Debug */,
+				46476DF613DAF53400D32152 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
+		46476DF713DAF53400D32152 /* Build configuration list for PBXNativeTarget "NNTPClientTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				46476DF813DAF53400D32152 /* Debug */,
+				46476DF913DAF53400D32152 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
+/* End XCConfigurationList section */
+
+/* Begin XCVersionGroup section */
+		46476DCF13DAF53300D32152 /* NNTPClient.xcdatamodeld */ = {
+			isa = XCVersionGroup;
+			children = (
+				46476DD013DAF53300D32152 /* NNTPClient.xcdatamodel */,
+			);
+			currentVersion = 46476DD013DAF53300D32152 /* NNTPClient.xcdatamodel */;
+			path = NNTPClient.xcdatamodeld;
+			sourceTree = "<group>";
+			versionGroupType = wrapper.xcdatamodel;
+		};
+/* End XCVersionGroup section */
+	};
+	rootObject = 46476DAE13DAF53300D32152 /* Project object */;
+}
