@@ -15,7 +15,7 @@ typedef struct {
 
 
 // Establish a connection using an SSL layer
-connection *sslConnect (void);
+connection *sslConnect (const char *, int);
 // Disconnect & free connection struct
 void sslDisconnect (connection *c);
 // Read all available text from the connection

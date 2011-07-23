@@ -21,7 +21,7 @@ typedef struct {
 } connection;
 
 // Establish a regular tcp connection
-int tcpConnect (char * serverName, int port)
+int tcpConnect (const char * serverName, int port)
 {
     int error, handle;
     struct hostent *host;
@@ -54,7 +54,7 @@ int tcpConnect (char * serverName, int port)
 }
 
 // Establish a connection using an SSL layer
-connection *sslConnect (char* server, int port)
+connection *sslConnect (const char* server, int port)
 {
     connection *c;
     
