@@ -21,13 +21,13 @@ typedef struct {
 } connection;
 
 // Establish a regular tcp connection
-int tcpConnect ()
+int tcpConnect (char * serverName, int port)
 {
     int error, handle;
     struct hostent *host;
     struct sockaddr_in server;
     
-    host = gethostbyname (SERVER);
+    host = gethostbyname (serverName);
     handle = socket (AF_INET, SOCK_STREAM, 0);
     if (handle == -1)
     {
@@ -37,7 +37,7 @@ int tcpConnect ()
     else
     {
         server.sin_family = AF_INET;
-        server.sin_port = htons (PORT);
+        server.sin_port = htons (port);
         server.sin_addr = *((struct in_addr *) host->h_addr);
         bzero (&(server.sin_zero), 8);
         
@@ -54,7 +54,7 @@ int tcpConnect ()
 }
 
 // Establish a connection using an SSL layer
-connection *sslConnect (void)
+connection *sslConnect (char* server, int port)
 {
     connection *c;
     
@@ -62,7 +62,7 @@ connection *sslConnect (void)
     c->sslHandle = NULL;
     c->sslContext = NULL;
     
-    c->socket = tcpConnect ();
+    c->socket = tcpConnect (server, port);
     if (c->socket)
     {
         // Register the error strings for libcrypto & libssl
