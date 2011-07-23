@@ -14,8 +14,6 @@ typedef struct {
 } connection;
 
 
-// Establish a regular tcp connection
-int tcpConnect ();
 // Establish a connection using an SSL layer
 connection *sslConnect (void);
 // Disconnect & free connection struct
