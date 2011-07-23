@@ -9,6 +9,7 @@
 #import <UIKit/UIKit.h>
 
 #import <CoreData/CoreData.h>
+#import "openssl_c_wrapper.h"
 
 @interface RootViewController : UITableViewController <NSFetchedResultsControllerDelegate> {
 
