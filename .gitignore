@@ -1,9 +1,5 @@
-<<<<<<< HEAD
 .DS_Store
-*.xcuserdatad
 *.xcuserstate
 UserInterfaceState.xcuserstate
 NNTPClient.xcodeproj/project.xcworkspace/xcuserdata/servercimen.xcuserdatad/UserInterfaceState.xcuserstate
-=======
 *.xcuserdatad
->>>>>>> 3f280cd7346702792f8b5dab70ebfbc58bca924d

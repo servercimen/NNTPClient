@@ -20,10 +20,6 @@ typedef struct {
     SSL_CTX *sslContext;
 } connection;
 
-// For this example, we'll be testing on openssl.org
-#define SERVER  "www.openssl.org"
-#define PORT 443
-
 // Establish a regular tcp connection
 int tcpConnect ()
 {
