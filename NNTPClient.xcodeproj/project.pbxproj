@@ -43,21 +43,21 @@
 		46476DBD13DAF53300D32152 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		46476DBF13DAF53300D32152 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
 		46476DC113DAF53300D32152 /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = System/Library/Frameworks/CoreData.framework; sourceTree = SDKROOT; };
-		46476DC513DAF53300D32152 /* NNTPClient-Info.plist */ = {isa = PBXFileReference; path = "NNTPClient-Info.plist"; sourceTree = "<group>"; };
+		46476DC513DAF53300D32152 /* NNTPClient-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "NNTPClient-Info.plist"; sourceTree = "<group>"; };
 		46476DC713DAF53300D32152 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
-		46476DC913DAF53300D32152 /* NNTPClient-Prefix.pch */ = {isa = PBXFileReference; path = "NNTPClient-Prefix.pch"; sourceTree = "<group>"; };
+		46476DC913DAF53300D32152 /* NNTPClient-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "NNTPClient-Prefix.pch"; sourceTree = "<group>"; };
 		46476DCA13DAF53300D32152 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
-		46476DCC13DAF53300D32152 /* NNTPClientAppDelegate.h */ = {isa = PBXFileReference; path = NNTPClientAppDelegate.h; sourceTree = "<group>"; };
+		46476DCC13DAF53300D32152 /* NNTPClientAppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = NNTPClientAppDelegate.h; sourceTree = "<group>"; };
 		46476DCD13DAF53300D32152 /* NNTPClientAppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = NNTPClientAppDelegate.m; sourceTree = "<group>"; };
 		46476DD013DAF53300D32152 /* NNTPClient.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = NNTPClient.xcdatamodel; sourceTree = "<group>"; };
 		46476DD313DAF53300D32152 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/MainWindow.xib; sourceTree = "<group>"; };
-		46476DD513DAF53300D32152 /* RootViewController.h */ = {isa = PBXFileReference; path = RootViewController.h; sourceTree = "<group>"; };
+		46476DD513DAF53300D32152 /* RootViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RootViewController.h; sourceTree = "<group>"; };
 		46476DD613DAF53300D32152 /* RootViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RootViewController.m; sourceTree = "<group>"; };
 		46476DD913DAF53300D32152 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/RootViewController.xib; sourceTree = "<group>"; };
 		46476DE013DAF53300D32152 /* NNTPClientTests.octest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = NNTPClientTests.octest; sourceTree = BUILT_PRODUCTS_DIR; };
-		46476DE913DAF53300D32152 /* NNTPClientTests-Info.plist */ = {isa = PBXFileReference; path = "NNTPClientTests-Info.plist"; sourceTree = "<group>"; };
+		46476DE913DAF53300D32152 /* NNTPClientTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "NNTPClientTests-Info.plist"; sourceTree = "<group>"; };
 		46476DEB13DAF53300D32152 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
-		46476DED13DAF53400D32152 /* NNTPClientTests-Prefix.pch */ = {isa = PBXFileReference; path = "NNTPClientTests-Prefix.pch"; sourceTree = "<group>"; };
+		46476DED13DAF53400D32152 /* NNTPClientTests-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "NNTPClientTests-Prefix.pch"; sourceTree = "<group>"; };
 		46476DEE13DAF53400D32152 /* NNTPClientTests.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = NNTPClientTests.h; sourceTree = "<group>"; };
 		46476DF013DAF53400D32152 /* NNTPClientTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = NNTPClientTests.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
