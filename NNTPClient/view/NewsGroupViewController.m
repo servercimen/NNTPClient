@@ -56,12 +56,22 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-
+    UIBarButtonItem *backButton = [[[UIBarButtonItem alloc] 
+                                    initWithTitle: @"Back" 
+                                    style:UIBarButtonItemStylePlain 
+                                    target:self 
+                                    action:@selector(back)] autorelease];
+    self.navigationItem.leftBarButtonItem = backButton;
     // Uncomment the following line to preserve selection between presentations.
     // self.clearsSelectionOnViewWillAppear = NO;
  
     // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
     // self.navigationItem.rightBarButtonItem = self.editButtonItem;
+}
+
+- (void)back
+{
+    [[self navigationController] popViewControllerAnimated:YES];
 }
 
 - (void)viewDidUnload

@@ -20,6 +20,7 @@
 - (NSString *) keyFromIndexPath:(NSIndexPath *)indexPath;
 - (UITextField *) getNextTextField:(UITextField *)textField;
 - (void)onConnect;
+- (void)hideKeyboard;
 - (UITableViewCell *) getConnectCell;
 
 @end

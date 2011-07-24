@@ -131,11 +131,12 @@
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    static NSString *CellIdentifier = @"Cell";
+    //static NSString *CellIdentifier = @"Cell";
     
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
+//    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
+    UITableViewCell *cell = nil;
     if (cell == nil) {
-        cell = [[[UITableViewCell alloc] initWithStyle:UITableViewCellStyleValue1 reuseIdentifier:CellIdentifier] autorelease];
+        cell = [[[UITableViewCell alloc] initWithStyle:UITableViewCellStyleValue1 reuseIdentifier:nil] autorelease];
         cell.accessoryType = UITableViewCellAccessoryNone;
 
         
@@ -204,8 +205,9 @@
         }
     } else if(indexPath.section == 2) {
         if(indexPath.row == 0) {
+            cell.textLabel.text = @"Connect";
             cell.textLabel.adjustsFontSizeToFitWidth = YES;
-            UISwitch *connectedSwitch = [cell viewWithTag:1];
+            UISwitch *connectedSwitch = (UISwitch *)[cell viewWithTag:1];
             connectedSwitch.on = [conn isConnected];
         } else if(indexPath.row == 1) {
             cell.textLabel.text = @"Debug";
@@ -222,12 +224,12 @@
 {
     [self hideKeyboard];
     NSIndexPath *indexPath = [NSIndexPath indexPathForRow:0 inSection:2];
-    UITableViewCell *cell = [self.view cellForRowAtIndexPath:indexPath];
-    [self.view deselectRowAtIndexPath:indexPath animated:YES];
-    if(![conn isConnected])
+    UITableViewCell *cell = [(UITableView *)self.view cellForRowAtIndexPath:indexPath];
+    [(UITableView *)self.view deselectRowAtIndexPath:indexPath animated:YES];
+    if(sender.on)
     {
         cell.userInteractionEnabled = NO;
-        [sender removeFromSuperview];
+        sender.hidden = YES;
         
         UIActivityIndicatorView *activityView = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleGray];
         [activityView startAnimating];
@@ -241,6 +243,7 @@
         [conn disconnect];
         self.conn = nil;
         sender.on = NO;
+        [((UITableView *)self.view) reloadSections:[NSIndexSet indexSetWithIndex:2] withRowAnimation:UITableViewRowAnimationFade];
     }
 }
 
@@ -361,15 +364,12 @@
         [alertView release];
         success = NO;
     }
-    
-    UISwitch *connectionControl = [[UISwitch alloc] initWithFrame: CGRectMake(200, 10, 0, 0)];
-    connectionControl.on = success;
-    connectionControl.tag = 1;
-    [connectionControl addTarget:self action:@selector(switchAction:) forControlEvents:UIControlEventValueChanged];
-    [cell addSubview: connectionControl];
+    UISwitch *connectControl = ((UISwitch *)[cell viewWithTag:1]);
+    connectControl.on = success;
+    connectControl.hidden = NO;
     
     if(success) {
-        [((UITableView *)self.view) reloadSections:[NSIndexSet indexSetWithIndex:2] withRowAnimation:UITableViewScrollPositionBottom];
+        [((UITableView *)self.view) reloadSections:[NSIndexSet indexSetWithIndex:2] withRowAnimation:UITableViewRowAnimationFade];
     }
 }
 
