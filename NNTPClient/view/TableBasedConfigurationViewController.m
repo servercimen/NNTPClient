@@ -157,7 +157,7 @@
                 if(indexPath.row == 0) {
                     textField.text = @"e1560697";
                 } else if(indexPath.row == 1) {
-                    textField.text = @"209202s&";
+                    textField.text = @"";
                     textField.secureTextEntry = YES;
                     textField.returnKeyType = UIReturnKeyDone;
                 }
