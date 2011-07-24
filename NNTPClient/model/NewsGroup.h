@@ -34,5 +34,7 @@
 @property(nonatomic, retain) NSString *status;
 
 -(id) initWithName: (NSString *)name andHigh:(NSNumber *)high andLow:(NSNumber *)low andStatus:(NSString *)status;
-
+//logical group name
+-(NSString *) getGroupID;
+-(NSString *) getGroupName;
 @end
