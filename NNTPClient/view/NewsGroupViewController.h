@@ -8,15 +8,17 @@
 
 #import <UIKit/UIKit.h>
 @class SSLConnection;
+@class NewsGroup;
 
 @interface NewsGroupViewController : UITableViewController {
-    NSArray *newsGroupData;
+    NSMutableDictionary *newsGroupData;
     SSLConnection *conn;
 }
 
-@property(nonatomic, retain) NSArray *newsGroupData;
+@property(nonatomic, retain) NSMutableDictionary *newsGroupData;
 @property(nonatomic, retain) SSLConnection *conn;
 
-- (id) initWithNewsGroupData:(NSArray *)data andSSLConnection:(SSLConnection *)connection;
-
+- (id) initWithNewsGroupData:(NSMutableDictionary *)data andSSLConnection:(SSLConnection *)connection;
+- (NSArray *) getNewsGroupAtIndex:(NSInteger)index;
+- (NewsGroup *) getNewsGroupAtIndexPath:(NSIndexPath *)indexPath;
 @end

@@ -11,6 +11,8 @@
 #import "SSLAuth.h"
 #import "MessageViewController.h"
 #import "NNTPClientAppDelegate.h"
+#import "NewsGroupViewController.h"
+#import "NewsGroupParser.h"
 
 @implementation TableBasedConfigurationViewController
 
@@ -106,7 +108,13 @@
 {
     if (section < 2) {
         return 2;
-    } 
+    } else if(section == 2) {
+        if([conn isConnected]) {
+            return 3;
+        } else {
+            return 1;
+        }
+    }
     return 1;
 }
 
@@ -166,12 +174,19 @@
                     textField.secureTextEntry = YES;
                     textField.returnKeyType = UIReturnKeyDone;
                 }
-            } else if(indexPath.section){
-            
             }
             [textViews setObject:textField forKey:[self keyFromIndexPath:indexPath]];
-        } else {
-            cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
+        } else if(indexPath.section == 2) {
+            if(indexPath.row == 0) {
+                UISwitch *connectionControl = [ [ UISwitch alloc ] initWithFrame: CGRectMake(200, 10, 0, 0) ];
+                connectionControl.on = NO;
+                connectionControl.tag = 1;
+                [connectionControl addTarget:self action:@selector(switchAction:) forControlEvents:UIControlEventValueChanged];
+                [cell addSubview: connectionControl];
+                [connectionControl release];
+            } else {
+                cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;                
+            }
         }
     }
 
@@ -190,16 +205,43 @@
     } else if(indexPath.section == 2) {
         if(indexPath.row == 0) {
             cell.textLabel.adjustsFontSizeToFitWidth = YES;
-            if([conn isConnected]) {
-                cell.textLabel.text = @"Disconnect";
-            } else {
-                cell.textLabel.text = @"Connect";
-            }
+            UISwitch *connectedSwitch = [cell viewWithTag:1];
+            connectedSwitch.on = [conn isConnected];
+        } else if(indexPath.row == 1) {
+            cell.textLabel.text = @"Debug";
+        } else if(indexPath.row == 2) {
+            cell.textLabel.text = @"News Groups";
         }
     }
     
     
     return cell;
+}
+
+- (void)switchAction:(UISwitch*)sender
+{
+    [self hideKeyboard];
+    NSIndexPath *indexPath = [NSIndexPath indexPathForRow:0 inSection:2];
+    UITableViewCell *cell = [self.view cellForRowAtIndexPath:indexPath];
+    [self.view deselectRowAtIndexPath:indexPath animated:YES];
+    if(![conn isConnected])
+    {
+        cell.userInteractionEnabled = NO;
+        [sender removeFromSuperview];
+        
+        UIActivityIndicatorView *activityView = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleGray];
+        [activityView startAnimating];
+        [cell setAccessoryView:activityView];
+        [activityView release];
+        
+        [self onConnect];
+    }
+    else
+    {
+        [conn disconnect];
+        self.conn = nil;
+        sender.on = NO;
+    }
 }
 
 - (NSString *) keyFromIndexPath:(NSIndexPath *)indexPath
@@ -290,6 +332,7 @@
 
 - (void) onConnectResponse:(NSDictionary *)data
 {
+    BOOL success = YES;
     NSNumber *result = [data objectForKey:@"result"];
     UITextField *usernameField = [self.textViews objectForKey:@"1X0"];
     UITextField *passwordField = [self.textViews objectForKey:@"1X1"];
@@ -297,17 +340,11 @@
     UITableViewCell *cell = [self getConnectCell];
     cell.userInteractionEnabled = YES;
     [cell setAccessoryView:nil];
-    [cell setAccessoryType:UITableViewCellAccessoryDisclosureIndicator];
     
     if([result intValue]) {
         [conn read];//clear pipe for auth
         SSLAuth *auth = [[[SSLAuth alloc] initWithConnection:conn] autorelease];
-        if([auth authenticateWithUsername:usernameField.text andPassword:passwordField.text]) {
-            MessageViewController *messageView = [[[MessageViewController alloc] init] autorelease];
-            messageView.conn = conn;
-            cell.textLabel.text = @"Disconnect";
-            [self.navigationController pushViewController:messageView animated:YES];
-        } else {
+        if(![auth authenticateWithUsername:usernameField.text andPassword:passwordField.text]) {
             UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"Error" message:@"Authentication failed please check your credentials." delegate:nil cancelButtonTitle:@"Dismiss" otherButtonTitles:nil];
             
             [alertView show];
@@ -315,12 +352,24 @@
             
             [conn disconnect];
             conn = nil;
+            success = NO;
         }
     } else {
         UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"Error" message:@"Connection failed, please check your configuration." delegate:nil cancelButtonTitle:@"Dismiss" otherButtonTitles:nil];
 
         [alertView show];
         [alertView release];
+        success = NO;
+    }
+    
+    UISwitch *connectionControl = [[UISwitch alloc] initWithFrame: CGRectMake(200, 10, 0, 0)];
+    connectionControl.on = success;
+    connectionControl.tag = 1;
+    [connectionControl addTarget:self action:@selector(switchAction:) forControlEvents:UIControlEventValueChanged];
+    [cell addSubview: connectionControl];
+    
+    if(success) {
+        [((UITableView *)self.view) reloadSections:[NSIndexSet indexSetWithIndex:2] withRowAnimation:UITableViewScrollPositionBottom];
     }
 }
 
@@ -373,25 +422,19 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    if(indexPath.section == 2 && indexPath.row == 0) {
-        UITableViewCell *cell = [tableView cellForRowAtIndexPath:indexPath];
-        [tableView deselectRowAtIndexPath:indexPath animated:YES];
-        if(![conn isConnected])
-        {
-            cell.userInteractionEnabled = NO;
-
-            UIActivityIndicatorView *activityView = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleGray];
-            [activityView startAnimating];
-            [cell setAccessoryView:activityView];
-            [activityView release];
-
-            [self onConnect];
-        }
-        else
-        {
-            [conn disconnect];
-            self.conn = nil;
-            cell.textLabel.text = @"Connect";
+    if(indexPath.section == 2) {
+        if(indexPath.row == 0) {
+            
+        } else if(indexPath.row == 1) {
+            MessageViewController *messageView = [[[MessageViewController alloc] init] autorelease];
+            messageView.conn = conn;
+            
+            [[self navigationController] pushViewController:messageView animated:YES];
+        } else if(indexPath.row == 2) {
+            
+            NewsGroupViewController *newsGroup = [[[NewsGroupViewController alloc] initWithNewsGroupData:[NSMutableDictionary dictionaryWithObjectsAndKeys:[[NewsGroupParser retrieveNewsGroups:conn] allValues], @"No-Group", nil] andSSLConnection:conn] autorelease];
+            
+            [[self navigationController] pushViewController:newsGroup animated:YES];
         }
     }
 }

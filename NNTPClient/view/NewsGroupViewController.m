@@ -16,7 +16,7 @@
 @synthesize newsGroupData;
 @synthesize conn;
 
-- (id) initWithNewsGroupData:(NSArray *)data andSSLConnection:(SSLConnection *)connection
+- (id) initWithNewsGroupData:(NSMutableDictionary *)data andSSLConnection:(SSLConnection *)connection
 {
     self = [super init];
     if (self) {
@@ -104,9 +104,34 @@
     return [newsGroupData count];
 }
 
+- (NSString *) tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section
+{
+    return [[newsGroupData allKeys] objectAtIndex:section];
+}
+
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    return [[newsGroupData objectAtIndex:section] count];
+    return [[self getNewsGroupAtIndex:section] count];
+}
+
+- (NewsGroup *) getNewsGroupAtIndexPath:(NSIndexPath *)indexPath
+{
+    NSArray *group = [self getNewsGroupAtIndex:indexPath.section];
+    return [group objectAtIndex:indexPath.row];
+}
+
+- (NSArray *) getNewsGroupAtIndex:(NSInteger)index
+{
+    int i = 0;
+    for (NSString *key in newsGroupData) {
+        if(i == index) {
+            return [newsGroupData objectForKey:key];
+        }
+        
+        i++;
+    }
+    
+    return nil;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
@@ -118,7 +143,7 @@
         cell = [[[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier] autorelease];
         cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
     }
-    NewsGroup *newsGroup = [[newsGroupData objectAtIndex:indexPath.section] objectAtIndex:indexPath.row];
+    NewsGroup *newsGroup = [self getNewsGroupAtIndexPath:indexPath];
     cell.textLabel.text = newsGroup.name;
     
     return cell;
@@ -167,7 +192,7 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    NewsGroup *newsGroup = [[newsGroupData objectAtIndex:indexPath.section] objectAtIndex:indexPath.row];
+    NewsGroup *newsGroup = [self getNewsGroupAtIndexPath:indexPath];
     
 }
 
