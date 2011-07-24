@@ -31,11 +31,16 @@
     return sslConn;
 }
 
--(void) connect
+-(void) connectWithBlock:(void(^)(BOOL result))block
 {
     int portNum = [self.port intValue];
     const char *hostnameCStr = [self.hostname UTF8String];
     c = sslConnect(hostnameCStr, portNum);
+    if([self isConnected]) {
+        block(YES);
+    } else {
+        block(NO);
+    }
 }
 
 -(void) disconnect

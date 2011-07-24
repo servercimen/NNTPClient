@@ -9,7 +9,7 @@
 #import "TableBasedConfigurationViewController.h"
 #import "SSLConnection.h"
 #import "MessageViewController.h"
-
+#import "NNTPClientAppDelegate.h"
 
 @implementation TableBasedConfigurationViewController
 
@@ -255,22 +255,54 @@
 
 - (void)onConnect {
     [self hideKeyboard];
+    [self performSelectorInBackground:@selector(doConnect) withObject:nil];
     
+}
+
+- (void)doConnect {
     UITextField *hostnameField = [self.textViews objectForKey:@"0X0"];
     UITextField *portField = [self.textViews objectForKey:@"0X1"];
-    UITextField *usernameField = [self.textViews objectForKey:@"1X0"];
-    UITextField *passwordField = [self.textViews objectForKey:@"1X1"];
     NSString *hostname = hostnameField.text;
     NSString *port = portField.text;
+    
     SSLConnection *conn = [SSLConnection sslConnectionWithHostname:hostname andPort:port];
-    [conn connect];
-    if([conn isConnected]) {
+    [conn connectWithBlock:^(BOOL result) {
+        [self performSelectorOnMainThread:@selector(onConnectResponse:) 
+                               withObject:[NSDictionary dictionaryWithObjectsAndKeys:conn, @"conn", [NSNumber numberWithBool:result], @"result", nil]
+                            waitUntilDone:YES];
+    }];
+}
+
+- (void) onConnectResponse:(NSDictionary *)data
+{
+    SSLConnection *conn = [data objectForKey:@"conn"];
+    NSNumber *result = [data objectForKey:@"result"];
+    UITextField *usernameField = [self.textViews objectForKey:@"1X0"];
+    UITextField *passwordField = [self.textViews objectForKey:@"1X1"];
+
+    UITableViewCell *cell = [self getConnectCell];
+    cell.userInteractionEnabled = YES;
+    [cell setAccessoryView:nil];
+    [cell setAccessoryType:UITableViewCellAccessoryDisclosureIndicator];
+    
+    if([result intValue]) {
         MessageViewController *messageView = [[[MessageViewController alloc] init] autorelease];
         messageView.conn = conn;
         [conn write:[NSString stringWithFormat:@"authinfo user %@", usernameField.text]];
         [conn write:[NSString stringWithFormat:@"authinfo pass %@", passwordField.text]];
         [self.navigationController pushViewController:messageView animated:YES];
+    } else {
+        UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"Error" message:@"Connection failed, please check your configuration." delegate:nil cancelButtonTitle:@"Dismiss" otherButtonTitles:nil];
+
+        [alertView show];
+        [alertView release];
     }
+}
+
+- (UITableViewCell *) getConnectCell
+{
+    NSIndexPath *indexPath = [NSIndexPath indexPathForRow:0 inSection:2];
+    return [(UITableView *)self.view cellForRowAtIndexPath:indexPath];
 }
 
 /*
@@ -317,6 +349,15 @@
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
     if(indexPath.section == 2 && indexPath.row == 0) {
+        UITableViewCell *cell = [tableView cellForRowAtIndexPath:indexPath];
+        cell.userInteractionEnabled = NO;
+
+        UIActivityIndicatorView *activityView = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleGray];
+        [activityView startAnimating];
+        [cell setAccessoryView:activityView];
+        [activityView release];
+        
+        [tableView deselectRowAtIndexPath:indexPath animated:YES];
         [self onConnect];
     }
 }

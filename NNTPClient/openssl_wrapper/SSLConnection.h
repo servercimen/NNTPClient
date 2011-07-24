@@ -21,7 +21,7 @@
 
 +(id) sslConnectionWithHostname:(NSString *)hostname andPort:(NSString *)port;
 
--(void) connect;
+-(void) connectWithBlock:(void(^)(BOOL result))block;
 -(void) disconnect;
 -(NSString *) read;
 -(NSString *) readUntilMessageArrives;
