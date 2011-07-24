@@ -27,7 +27,7 @@
     NSString * userMessage = [NSString stringWithFormat:@"AUTHINFO USER %@", username];
     [conn write:userMessage];
     NSString * userResponse = [conn readUntilMessageArrives];
-    if(![userResponse hasPrefix:@"381"])
+    if([userResponse rangeOfString:@"381"].location == NSNotFound)
     {
         return NO;
     }
@@ -35,7 +35,7 @@
     NSString * passwordMessage = [NSString stringWithFormat:@"AUTHINFO PASS %@", password];
     [conn write:passwordMessage];
     NSString * passwordResponse = [conn readUntilMessageArrives];
-    if([passwordResponse hasPrefix:@"281"])
+    if([passwordResponse rangeOfString:@"281"].location != NSNotFound)
     {
         return YES;
     }else

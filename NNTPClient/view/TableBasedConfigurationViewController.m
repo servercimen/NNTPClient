@@ -15,6 +15,7 @@
 @implementation TableBasedConfigurationViewController
 
 @synthesize textViews;
+@synthesize conn;
 
 - (id)initWithStyle:(UITableViewStyle)style
 {
@@ -27,6 +28,8 @@
 
 - (void)dealloc
 {
+    [conn disconnect];
+    [conn release];
     [textViews release];
     [super dealloc];
 }
@@ -54,6 +57,7 @@
     UITapGestureRecognizer *gestureRecognizer = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(hideKeyboard)];
     gestureRecognizer.cancelsTouchesInView = NO;
     [self.tableView addGestureRecognizer:gestureRecognizer];
+    [gestureRecognizer release];
 }
 
 - (void)viewDidUnload
@@ -162,6 +166,8 @@
                     textField.secureTextEntry = YES;
                     textField.returnKeyType = UIReturnKeyDone;
                 }
+            } else if(indexPath.section){
+            
             }
             [textViews setObject:textField forKey:[self keyFromIndexPath:indexPath]];
         } else {
@@ -183,7 +189,12 @@
         }
     } else if(indexPath.section == 2) {
         if(indexPath.row == 0) {
-            cell.textLabel.text = @"Connect";
+            cell.textLabel.adjustsFontSizeToFitWidth = YES;
+            if([conn isConnected]) {
+                cell.textLabel.text = @"Disconnect";
+            } else {
+                cell.textLabel.text = @"Connect";
+            }
         }
     }
     
@@ -261,22 +272,24 @@
 }
 
 - (void)doConnect {
+    NSAutoreleasePool* pool = [[NSAutoreleasePool alloc] init];
     UITextField *hostnameField = [self.textViews objectForKey:@"0X0"];
     UITextField *portField = [self.textViews objectForKey:@"0X1"];
     NSString *hostname = hostnameField.text;
     NSString *port = portField.text;
     
-    SSLConnection *conn = [SSLConnection sslConnectionWithHostname:hostname andPort:port];
+    conn = [SSLConnection sslConnectionWithHostname:hostname andPort:port];
     [conn connectWithBlock:^(BOOL result) {
         [self performSelectorOnMainThread:@selector(onConnectResponse:) 
-                               withObject:[NSDictionary dictionaryWithObjectsAndKeys:conn, @"conn", [NSNumber numberWithBool:result], @"result", nil]
+                               withObject:[NSDictionary dictionaryWithObjectsAndKeys:[NSNumber numberWithBool:result], @"result", nil]
                             waitUntilDone:YES];
     }];
+    
+    [pool release];
 }
 
 - (void) onConnectResponse:(NSDictionary *)data
 {
-    SSLConnection *conn = [data objectForKey:@"conn"];
     NSNumber *result = [data objectForKey:@"result"];
     UITextField *usernameField = [self.textViews objectForKey:@"1X0"];
     UITextField *passwordField = [self.textViews objectForKey:@"1X1"];
@@ -287,10 +300,12 @@
     [cell setAccessoryType:UITableViewCellAccessoryDisclosureIndicator];
     
     if([result intValue]) {
+        [conn read];//clear pipe for auth
         SSLAuth *auth = [[[SSLAuth alloc] initWithConnection:conn] autorelease];
         if([auth authenticateWithUsername:usernameField.text andPassword:passwordField.text]) {
             MessageViewController *messageView = [[[MessageViewController alloc] init] autorelease];
             messageView.conn = conn;
+            cell.textLabel.text = @"Disconnect";
             [self.navigationController pushViewController:messageView animated:YES];
         } else {
             UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"Error" message:@"Authentication failed please check your credentials." delegate:nil cancelButtonTitle:@"Dismiss" otherButtonTitles:nil];
@@ -299,6 +314,7 @@
             [alertView release];
             
             [conn disconnect];
+            conn = nil;
         }
     } else {
         UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"Error" message:@"Connection failed, please check your configuration." delegate:nil cancelButtonTitle:@"Dismiss" otherButtonTitles:nil];
@@ -359,15 +375,24 @@
 {
     if(indexPath.section == 2 && indexPath.row == 0) {
         UITableViewCell *cell = [tableView cellForRowAtIndexPath:indexPath];
-        cell.userInteractionEnabled = NO;
-
-        UIActivityIndicatorView *activityView = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleGray];
-        [activityView startAnimating];
-        [cell setAccessoryView:activityView];
-        [activityView release];
-        
         [tableView deselectRowAtIndexPath:indexPath animated:YES];
-        [self onConnect];
+        if(![conn isConnected])
+        {
+            cell.userInteractionEnabled = NO;
+
+            UIActivityIndicatorView *activityView = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleGray];
+            [activityView startAnimating];
+            [cell setAccessoryView:activityView];
+            [activityView release];
+
+            [self onConnect];
+        }
+        else
+        {
+            [conn disconnect];
+            self.conn = nil;
+            cell.textLabel.text = @"Connect";
+        }
     }
 }
 

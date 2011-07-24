@@ -25,8 +25,10 @@
 		4624033013DC505B0042F2B0 /* TableBasedConfigurationViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4624032D13DC505A0042F2B0 /* TableBasedConfigurationViewController.m */; };
 		4624033113DC505B0042F2B0 /* TableBasedConfigurationViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4624032E13DC505A0042F2B0 /* TableBasedConfigurationViewController.xib */; };
 		4624033213DC505B0042F2B0 /* TableBasedConfigurationViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4624032E13DC505A0042F2B0 /* TableBasedConfigurationViewController.xib */; };
-		4624034113DC818D0042F2B0 /* SSLAuth.m in Sources */ = {isa = PBXBuildFile; fileRef = 4624034013DC818C0042F2B0 /* SSLAuth.m */; };
-		4624034213DC818D0042F2B0 /* SSLAuth.m in Sources */ = {isa = PBXBuildFile; fileRef = 4624034013DC818C0042F2B0 /* SSLAuth.m */; };
+		4624034613DC94990042F2B0 /* NewsGroupViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4624034413DC94970042F2B0 /* NewsGroupViewController.m */; };
+		4624034713DC94990042F2B0 /* NewsGroupViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4624034413DC94970042F2B0 /* NewsGroupViewController.m */; };
+		4624034813DC94990042F2B0 /* NewsGroupViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4624034513DC94980042F2B0 /* NewsGroupViewController.xib */; };
+		4624034913DC94990042F2B0 /* NewsGroupViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4624034513DC94980042F2B0 /* NewsGroupViewController.xib */; };
 		46476DBC13DAF53300D32152 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 46476DBB13DAF53300D32152 /* UIKit.framework */; };
 		46476DBE13DAF53300D32152 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 46476DBD13DAF53300D32152 /* Foundation.framework */; };
 		46476DC013DAF53300D32152 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 46476DBF13DAF53300D32152 /* CoreGraphics.framework */; };
@@ -81,8 +83,9 @@
 		4624032C13DC505A0042F2B0 /* TableBasedConfigurationViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TableBasedConfigurationViewController.h; sourceTree = "<group>"; };
 		4624032D13DC505A0042F2B0 /* TableBasedConfigurationViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TableBasedConfigurationViewController.m; sourceTree = "<group>"; };
 		4624032E13DC505A0042F2B0 /* TableBasedConfigurationViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TableBasedConfigurationViewController.xib; sourceTree = "<group>"; };
-		4624033F13DC818C0042F2B0 /* SSLAuth.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SSLAuth.h; sourceTree = "<group>"; };
-		4624034013DC818C0042F2B0 /* SSLAuth.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SSLAuth.m; sourceTree = "<group>"; };
+		4624034313DC94970042F2B0 /* NewsGroupViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NewsGroupViewController.h; sourceTree = "<group>"; };
+		4624034413DC94970042F2B0 /* NewsGroupViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NewsGroupViewController.m; sourceTree = "<group>"; };
+		4624034513DC94980042F2B0 /* NewsGroupViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = NewsGroupViewController.xib; sourceTree = "<group>"; };
 		46476DB713DAF53300D32152 /* NNTPClient.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = NNTPClient.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		46476DBB13DAF53300D32152 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		46476DBD13DAF53300D32152 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -247,6 +250,9 @@
 				4624032C13DC505A0042F2B0 /* TableBasedConfigurationViewController.h */,
 				4624032D13DC505A0042F2B0 /* TableBasedConfigurationViewController.m */,
 				4624032E13DC505A0042F2B0 /* TableBasedConfigurationViewController.xib */,
+				4624034313DC94970042F2B0 /* NewsGroupViewController.h */,
+				4624034413DC94970042F2B0 /* NewsGroupViewController.m */,
+				4624034513DC94980042F2B0 /* NewsGroupViewController.xib */,
 			);
 			path = view;
 			sourceTree = "<group>";
@@ -337,8 +343,6 @@
 		46476DFB13DAFCCB00D32152 /* openssl_wrapper */ = {
 			isa = PBXGroup;
 			children = (
-				4624033F13DC818C0042F2B0 /* SSLAuth.h */,
-				4624034013DC818C0042F2B0 /* SSLAuth.m */,
 				46476DFC13DAFCEE00D32152 /* SSLConnection.h */,
 				46476DFD13DAFCEE00D32152 /* SSLConnection.m */,
 				46476E0013DAFE0A00D32152 /* openssl_c_wrapper.c */,
@@ -510,6 +514,7 @@
 				4624032313DB0DA90042F2B0 /* ConnectionConfigurationViewController.xib in Resources */,
 				4624032A13DB14660042F2B0 /* MessageViewController.xib in Resources */,
 				4624033113DC505B0042F2B0 /* TableBasedConfigurationViewController.xib in Resources */,
+				4624034813DC94990042F2B0 /* NewsGroupViewController.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -522,6 +527,7 @@
 				4624032413DB0DA90042F2B0 /* ConnectionConfigurationViewController.xib in Resources */,
 				4624032B13DB14660042F2B0 /* MessageViewController.xib in Resources */,
 				4624033213DC505B0042F2B0 /* TableBasedConfigurationViewController.xib in Resources */,
+				4624034913DC94990042F2B0 /* NewsGroupViewController.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -557,7 +563,7 @@
 				4624032113DB0DA90042F2B0 /* ConnectionConfigurationViewController.m in Sources */,
 				4624032813DB14660042F2B0 /* MessageViewController.m in Sources */,
 				4624032F13DC505B0042F2B0 /* TableBasedConfigurationViewController.m in Sources */,
-				4624034113DC818D0042F2B0 /* SSLAuth.m in Sources */,
+				4624034613DC94990042F2B0 /* NewsGroupViewController.m in Sources */,
 				0CE735E313DC986300B9567F /* NewsGroup.m in Sources */,
 				0CE735E513DC986300B9567F /* SSLAuth.m in Sources */,
 				0CE735EA13DC996E00B9567F /* NewsGroupParser.m in Sources */,
@@ -574,7 +580,7 @@
 				4624032213DB0DA90042F2B0 /* ConnectionConfigurationViewController.m in Sources */,
 				4624032913DB14660042F2B0 /* MessageViewController.m in Sources */,
 				4624033013DC505B0042F2B0 /* TableBasedConfigurationViewController.m in Sources */,
-				4624034213DC818D0042F2B0 /* SSLAuth.m in Sources */,
+				4624034713DC94990042F2B0 /* NewsGroupViewController.m in Sources */,
 				0CE735E413DC986300B9567F /* NewsGroup.m in Sources */,
 				0CE735E613DC986300B9567F /* SSLAuth.m in Sources */,
 				0CE735EB13DC996E00B9567F /* NewsGroupParser.m in Sources */,

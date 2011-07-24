@@ -8,8 +8,6 @@
 #include <unistd.h>
 #include <errno.h>
 
-
-
 #include <openssl/rand.h>
 #include <openssl/ssl.h>
 #include <openssl/err.h>

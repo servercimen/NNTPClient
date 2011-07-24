@@ -68,7 +68,7 @@
 {
 
     NSString *readData = [self read];
-    while(!readData)
+    while(!readData && [self isConnected])
     {
         readData = [self read];
         sleep(100);
