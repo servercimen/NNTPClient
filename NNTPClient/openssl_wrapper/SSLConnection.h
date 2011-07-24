@@ -24,6 +24,7 @@
 -(void) connect;
 -(void) disconnect;
 -(NSString *) read;
+-(NSString *) readUntilMessageArrives;
 -(void) write:(NSString *)data;
 -(BOOL) isConnected;
 @end

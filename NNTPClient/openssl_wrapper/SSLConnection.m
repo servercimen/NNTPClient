@@ -59,6 +59,17 @@
     }
 }
 
+-(NSString *)readUntilMessageArrives
+{
+
+    NSString *readData = [self read];
+    while(!readData)
+    {
+        readData = [self read];
+    }
+    return readData;
+}
+
 -(void) write:(NSString *)data
 {
     data = [data stringByAppendingString:@"\n"];
