@@ -17,7 +17,7 @@
     NSString *newsgroupsResponse =  [conn readUntilMessageArrives];
     NSArray *lines = [newsgroupsResponse componentsSeparatedByString:@"\n"];
     NSMutableDictionary *dict = [NSMutableDictionary dictionary];
-    NSNumberFormatter * f = [[NSNumberFormatter alloc] init];
+    NSNumberFormatter * f = [[[NSNumberFormatter alloc] init] autorelease];
     [f setNumberStyle:NSNumberFormatterDecimalStyle];
     for(NSString *line in lines)
     {
