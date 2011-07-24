@@ -15,6 +15,7 @@
 @implementation TableBasedConfigurationViewController
 
 @synthesize textViews;
+@synthesize conn;
 
 - (id)initWithStyle:(UITableViewStyle)style
 {
@@ -27,6 +28,8 @@
 
 - (void)dealloc
 {
+    [conn disconnect];
+    [conn release];
     [textViews release];
     [super dealloc];
 }
@@ -183,7 +186,11 @@
         }
     } else if(indexPath.section == 2) {
         if(indexPath.row == 0) {
-            cell.textLabel.text = @"Connect";
+            if([conn isConnected]) {
+                cell.textLabel.text = @"Disconnect";
+            } else {
+                cell.textLabel.text = @"Connect";
+            }
         }
     }
     
@@ -261,6 +268,7 @@
 }
 
 - (void)doConnect {
+    NSAutoreleasePool* pool = [[NSAutoreleasePool alloc] init];
     UITextField *hostnameField = [self.textViews objectForKey:@"0X0"];
     UITextField *portField = [self.textViews objectForKey:@"0X1"];
     NSString *hostname = hostnameField.text;
@@ -272,6 +280,8 @@
                                withObject:[NSDictionary dictionaryWithObjectsAndKeys:conn, @"conn", [NSNumber numberWithBool:result], @"result", nil]
                             waitUntilDone:YES];
     }];
+    
+    [pool release];
 }
 
 - (void) onConnectResponse:(NSDictionary *)data
@@ -291,6 +301,7 @@
         if([auth authenticateWithUsername:usernameField.text andPassword:passwordField.text]) {
             MessageViewController *messageView = [[[MessageViewController alloc] init] autorelease];
             messageView.conn = conn;
+            cell.textLabel.text = @"Disconnect";
             [self.navigationController pushViewController:messageView animated:YES];
         } else {
             UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"Error" message:@"Authentication failed please check your credentials." delegate:nil cancelButtonTitle:@"Dismiss" otherButtonTitles:nil];
@@ -359,15 +370,23 @@
 {
     if(indexPath.section == 2 && indexPath.row == 0) {
         UITableViewCell *cell = [tableView cellForRowAtIndexPath:indexPath];
-        cell.userInteractionEnabled = NO;
+        if([conn isConnected])
+        {
+            cell.userInteractionEnabled = NO;
 
-        UIActivityIndicatorView *activityView = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleGray];
-        [activityView startAnimating];
-        [cell setAccessoryView:activityView];
-        [activityView release];
-        
-        [tableView deselectRowAtIndexPath:indexPath animated:YES];
-        [self onConnect];
+            UIActivityIndicatorView *activityView = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleGray];
+            [activityView startAnimating];
+            [cell setAccessoryView:activityView];
+            [activityView release];
+            
+            [tableView deselectRowAtIndexPath:indexPath animated:YES];
+            [self onConnect];
+        }
+        else
+        {
+            [conn disconnect];
+            cell.textLabel.text = @"Connect";
+        }
     }
 }
 

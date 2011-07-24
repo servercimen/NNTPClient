@@ -7,13 +7,15 @@
 //
 
 #import <UIKit/UIKit.h>
-
+@class SSLConnection;
 
 @interface TableBasedConfigurationViewController : UITableViewController <UITextFieldDelegate> {
     NSMutableDictionary *textViews;
+    SSLConnection *conn;
 }
 
 @property (nonatomic, retain) NSMutableDictionary *textViews;
+@property (nonatomic, retain) SSLConnection *conn;
 
 - (NSString *) keyFromIndexPath:(NSIndexPath *)indexPath;
 - (UITextField *) getNextTextField:(UITextField *)textField;

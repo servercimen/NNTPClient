@@ -9,7 +9,7 @@
 #import <UIKit/UIKit.h>
 #import "SSLConnection.h"
 
-@interface MessageViewController : UIViewController {
+@interface MessageViewController : UIViewController <UITextFieldDelegate> {
     SSLConnection *conn;
     UITextField *messageField;
     UITextView *responseField;

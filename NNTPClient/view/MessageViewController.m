@@ -27,9 +27,9 @@
 - (void)dealloc
 {
     [conn release];
-    
     [messageField release];
     [responseField release];
+    
     [super dealloc];
 }
 
@@ -58,9 +58,6 @@
 
 - (void)back
 {
-    if([self.conn isConnected]) {
-        [self.conn disconnect];
-    }
     [self.navigationController popViewControllerAnimated:YES];
 }
 
@@ -83,6 +80,7 @@
 - (IBAction)sendMessage {
     if(![conn isConnected]){
         NSLog(@"Connection is closed");
+        [self back];
         return ;
     }
     [messageField resignFirstResponder];
@@ -97,6 +95,7 @@
 }
 
 - (void) readMessage:(NSObject *)obj {
+    NSAutoreleasePool *pool = [[NSAutoreleasePool alloc] init];
     if(![conn isConnected]){
         NSLog(@"Connection is closed");
         return ;
@@ -107,11 +106,36 @@
         [self performSelectorOnMainThread:@selector(appendReadData:) withObject:readData waitUntilDone:YES];
         [self performSelectorInBackground:@selector(readMessage:) withObject:nil];
     }
-
+    [pool release];
 }
 
 - (void) appendReadData:(NSString *)data
 {
     responseField.text = [responseField.text stringByAppendingString:data];
 }
+
+- (BOOL) textFieldShouldReturn:(UITextField *)textField
+{
+    [textField resignFirstResponder];
+    if(textField == messageField)
+    {
+        [self sendMessage];
+    }
+    
+    return YES;
+}
+
+- (void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event {
+    
+    UITouch *touch = [[event allTouches] anyObject];
+    NSArray *textViews = [NSArray arrayWithObjects:messageField, responseField, nil];
+    for (UIView *textView in textViews) {
+        if ([textView isFirstResponder] && [touch view] != textView) {
+            [textView resignFirstResponder];
+        }
+    }
+    
+    [super touchesBegan:touches withEvent:event];
+}
+
 @end
