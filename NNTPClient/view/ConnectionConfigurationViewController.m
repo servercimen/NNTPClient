@@ -81,4 +81,54 @@
         [self.navigationController pushViewController:messageView animated:YES];
     }
 }
+
+- (void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event {
+    
+    UITouch *touch = [[event allTouches] anyObject];
+    NSArray *textViews = [NSArray arrayWithObjects:hostnameField, portField, usernameField, passwordField, nil];
+    for (UIView *textView in textViews) {
+        if ([textView isFirstResponder] && [touch view] != textView) {
+            [textView resignFirstResponder];
+        }
+    }
+    
+    [super touchesBegan:touches withEvent:event];
+}
+
+- (BOOL) textFieldShouldReturn:(UITextField *)textField
+{
+    [textField resignFirstResponder];
+    UITextField *nextField = [self getNextTextField:textField];
+
+    if(nextField == nil)
+    {
+
+        [self onConnect];
+    }
+    else
+    {
+        [nextField becomeFirstResponder];
+    }
+    
+    return YES;
+}
+
+- (UITextField *) getNextTextField:(UITextField *)textField
+{
+    if (textField == hostnameField)
+    {
+        return portField;
+    }
+    else if(textField == portField)
+    {
+        return usernameField;
+    }
+    else if(textField == usernameField)
+    {
+        return passwordField;
+    }
+    
+    return nil;
+}
+
 @end

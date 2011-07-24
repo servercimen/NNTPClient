@@ -15,6 +15,10 @@
 		4624032913DB14660042F2B0 /* MessageViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4624032613DB14660042F2B0 /* MessageViewController.m */; };
 		4624032A13DB14660042F2B0 /* MessageViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4624032713DB14660042F2B0 /* MessageViewController.xib */; };
 		4624032B13DB14660042F2B0 /* MessageViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4624032713DB14660042F2B0 /* MessageViewController.xib */; };
+		4624032F13DC505B0042F2B0 /* TableBasedConfigurationViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4624032D13DC505A0042F2B0 /* TableBasedConfigurationViewController.m */; };
+		4624033013DC505B0042F2B0 /* TableBasedConfigurationViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4624032D13DC505A0042F2B0 /* TableBasedConfigurationViewController.m */; };
+		4624033113DC505B0042F2B0 /* TableBasedConfigurationViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4624032E13DC505A0042F2B0 /* TableBasedConfigurationViewController.xib */; };
+		4624033213DC505B0042F2B0 /* TableBasedConfigurationViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4624032E13DC505A0042F2B0 /* TableBasedConfigurationViewController.xib */; };
 		46476DBC13DAF53300D32152 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 46476DBB13DAF53300D32152 /* UIKit.framework */; };
 		46476DBE13DAF53300D32152 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 46476DBD13DAF53300D32152 /* Foundation.framework */; };
 		46476DC013DAF53300D32152 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 46476DBF13DAF53300D32152 /* CoreGraphics.framework */; };
@@ -60,6 +64,9 @@
 		4624032513DB14660042F2B0 /* MessageViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MessageViewController.h; sourceTree = "<group>"; };
 		4624032613DB14660042F2B0 /* MessageViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MessageViewController.m; sourceTree = "<group>"; };
 		4624032713DB14660042F2B0 /* MessageViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MessageViewController.xib; sourceTree = "<group>"; };
+		4624032C13DC505A0042F2B0 /* TableBasedConfigurationViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TableBasedConfigurationViewController.h; sourceTree = "<group>"; };
+		4624032D13DC505A0042F2B0 /* TableBasedConfigurationViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TableBasedConfigurationViewController.m; sourceTree = "<group>"; };
+		4624032E13DC505A0042F2B0 /* TableBasedConfigurationViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TableBasedConfigurationViewController.xib; sourceTree = "<group>"; };
 		46476DB713DAF53300D32152 /* NNTPClient.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = NNTPClient.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		46476DBB13DAF53300D32152 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		46476DBD13DAF53300D32152 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -201,6 +208,9 @@
 				4624032513DB14660042F2B0 /* MessageViewController.h */,
 				4624032613DB14660042F2B0 /* MessageViewController.m */,
 				4624032713DB14660042F2B0 /* MessageViewController.xib */,
+				4624032C13DC505A0042F2B0 /* TableBasedConfigurationViewController.h */,
+				4624032D13DC505A0042F2B0 /* TableBasedConfigurationViewController.m */,
+				4624032E13DC505A0042F2B0 /* TableBasedConfigurationViewController.xib */,
 			);
 			path = view;
 			sourceTree = "<group>";
@@ -459,6 +469,7 @@
 				46476DDA13DAF53300D32152 /* RootViewController.xib in Resources */,
 				4624032313DB0DA90042F2B0 /* ConnectionConfigurationViewController.xib in Resources */,
 				4624032A13DB14660042F2B0 /* MessageViewController.xib in Resources */,
+				4624033113DC505B0042F2B0 /* TableBasedConfigurationViewController.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -470,6 +481,7 @@
 				46476DEF13DAF53400D32152 /* NNTPClientTests.h in Resources */,
 				4624032413DB0DA90042F2B0 /* ConnectionConfigurationViewController.xib in Resources */,
 				4624032B13DB14660042F2B0 /* MessageViewController.xib in Resources */,
+				4624033213DC505B0042F2B0 /* TableBasedConfigurationViewController.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -504,6 +516,7 @@
 				46476E0213DAFE0A00D32152 /* openssl_c_wrapper.c in Sources */,
 				4624032113DB0DA90042F2B0 /* ConnectionConfigurationViewController.m in Sources */,
 				4624032813DB14660042F2B0 /* MessageViewController.m in Sources */,
+				4624032F13DC505B0042F2B0 /* TableBasedConfigurationViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -516,6 +529,7 @@
 				46476E0313DAFE0A00D32152 /* openssl_c_wrapper.c in Sources */,
 				4624032213DB0DA90042F2B0 /* ConnectionConfigurationViewController.m in Sources */,
 				4624032913DB14660042F2B0 /* MessageViewController.m in Sources */,
+				4624033013DC505B0042F2B0 /* TableBasedConfigurationViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
