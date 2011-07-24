@@ -69,7 +69,7 @@
 }
 
 - (IBAction)onConnect {
-    NSString *hostname = hostnameField.text;
+    /*NSString *hostname = hostnameField.text;
     NSString *port = portField.text;
     SSLConnection *conn = [SSLConnection sslConnectionWithHostname:hostname andPort:port];
     [conn connect];
@@ -81,7 +81,7 @@
         [conn write:[NSString stringWithFormat:@"authinfo pass %@", self.passwordField.text]];
         [self.navigationController pushViewController:messageView animated:YES];
         [messageView readMessage:nil];
-    }
+    }*/
 }
 
 - (void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event {

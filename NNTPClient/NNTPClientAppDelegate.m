@@ -7,8 +7,8 @@
 //
 
 #import "NNTPClientAppDelegate.h"
-
 #import "ConnectionConfigurationViewController.h"
+#import <QuartzCore/QuartzCore.h>
 
 @implementation NNTPClientAppDelegate
 
@@ -190,5 +190,50 @@
 {
     return [[[NSFileManager defaultManager] URLsForDirectory:NSDocumentDirectory inDomains:NSUserDomainMask] lastObject];
 }
+
+
+#pragma mark - Loading Screen
+- (void)showAwesomeLoading:(NSString *)title
+{
+    UIView *view = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 320, 480)];
+    view.backgroundColor = [UIColor clearColor];
+    view.tag = 99;
+    view.alpha = 0;
+    
+    UIView *blackView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 150, 150)];
+    blackView.center = view.center;
+    blackView.layer.cornerRadius = 10;
+    blackView.backgroundColor = [UIColor blackColor];
+    blackView.alpha = 0.9;
+    UILabel *label = [[UILabel alloc] initWithFrame:CGRectMake(0, 37, 150, 38)];
+    label.backgroundColor = [UIColor clearColor];
+    label.textAlignment = UITextAlignmentCenter;
+    label.textColor = [UIColor whiteColor];
+    [label setText:title];
+    [blackView addSubview:label];
+    UIActivityIndicatorView *activity = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleWhite];
+    [activity startAnimating];
+    activity.center = CGPointMake(label.center.x, label.center.y + 38);
+    [blackView addSubview:activity];
+    [view addSubview:blackView];
+    
+    [self.window addSubview:view];
+    
+    [UIView animateWithDuration:1 animations:^{
+        view.alpha = 1;
+    }];
+}
+
+- (void)hideAwesomeLoading
+{
+    [UIView animateWithDuration:1
+         animations:^{
+             [self.window viewWithTag:99].alpha = 0;
+         }
+         completion:^(BOOL finished) {
+             [[self.window viewWithTag:99] removeFromSuperview];
+         }];
+}
+
 
 @end

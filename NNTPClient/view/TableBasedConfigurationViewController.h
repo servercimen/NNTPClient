@@ -18,5 +18,6 @@
 - (NSString *) keyFromIndexPath:(NSIndexPath *)indexPath;
 - (UITextField *) getNextTextField:(UITextField *)textField;
 - (void)onConnect;
+- (UITableViewCell *) getConnectCell;
 
 @end

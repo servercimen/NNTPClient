@@ -17,10 +17,12 @@
 @property (nonatomic, retain, readonly) NSManagedObjectContext *managedObjectContext;
 @property (nonatomic, retain, readonly) NSManagedObjectModel *managedObjectModel;
 @property (nonatomic, retain, readonly) NSPersistentStoreCoordinator *persistentStoreCoordinator;
+@property (nonatomic, retain) IBOutlet UINavigationController *navigationController;
 
 - (void)saveContext;
 - (NSURL *)applicationDocumentsDirectory;
+- (void)showAwesomeLoading:(NSString *)title;
+- (void)hideAwesomeLoading;
 
-@property (nonatomic, retain) IBOutlet UINavigationController *navigationController;
 
 @end
