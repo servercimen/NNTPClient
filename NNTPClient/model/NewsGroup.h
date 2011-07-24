@@ -11,6 +11,9 @@
 
 @interface NewsGroup : NSObject {
 
+    
+    //Description of the newsgroup
+    NSString *title;
     //Name of the newsgroup
     NSString *name;
     //high water mark for the group
@@ -24,7 +27,7 @@
     
     
 }
-
+@property(nonatomic, retain) NSString *title;
 @property(nonatomic, retain) NSString *name;
 @property(nonatomic, retain) NSNumber *high;
 @property(nonatomic, retain) NSNumber *low;

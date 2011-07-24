@@ -8,6 +8,7 @@
 
 #import "NewsGroupParser.h"
 #import "SSLConnection.h"
+#import "NewsGroup.h"
 
 @implementation NewsGroupParser
 
@@ -16,16 +17,16 @@
     NSString *newsgroupsResponse =  [conn readUntilMessageArrives];
     NSArray *lines = [newsgroupsResponse componentsSeparatedByString:@"\n"];
     NSMutableDictionary *dict = [NSMutableDictionary dictionary];
+    NSNumberFormatter * f = [[NSNumberFormatter alloc] init];
+    [f setNumberStyle:NSNumberFormatterDecimalStyle];
     for(NSString *line in lines)
     {
         if(![line hasPrefix:@"\x0f"] && ![line hasPrefix:@"."]){
             NSLog(@"Decided to process: %@", line);
             NSArray *lineElements = [line componentsSeparatedByString:@" "];
             if([lineElements count] == 4){
-//            NewsGroup *newsgroup = [NewsGroup initWithName:]
-//            [dict setValue: forKey:<#(NSString *)#>]
-                
-                
+                NewsGroup *newsgroup = [[NewsGroup alloc] initWithName:[lineElements objectAtIndex:0] andHigh:[f numberFromString:[lineElements objectAtIndex:1]] andLow:[f numberFromString:[lineElements objectAtIndex:2]] andStatus:[lineElements objectAtIndex:3]];
+                [dict setValue:newsgroup forKey:[newsgroup name]];
             }
         }
         // do something with lineElements

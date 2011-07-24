@@ -11,6 +11,7 @@
 
 @implementation NewsGroup
 
+@synthesize title;
 @synthesize name;
 @synthesize high;
 @synthesize low;
@@ -31,6 +32,7 @@
 }
 
 - (void)dealloc {
+    [title release];
     [name release];
     [high release];
     [low release];
