@@ -8,6 +8,8 @@
 #include <unistd.h>
 #include <errno.h>
 
+
+
 #include <openssl/rand.h>
 #include <openssl/ssl.h>
 #include <openssl/err.h>
@@ -19,7 +21,6 @@ typedef struct {
     SSL *sslHandle;
     SSL_CTX *sslContext;
 } connection;
-
 
 int log_ssl(void)
 {
@@ -85,7 +86,6 @@ connection *sslConnect (const char* server, int port)
         
         // New context saying we are a client, and using SSL 2 or 3
         c->sslContext = SSL_CTX_new (SSLv2_client_method ());
-//        c->sslContext = SSL_CTX_new (DTLSv1_client_method ());
         
         if (c->sslContext == NULL)
             ERR_print_errors_fp (stderr);
@@ -139,10 +139,12 @@ void sslDisconnect (connection *c)
 // Read all available text from the connection
 char *sslRead (connection *c)
 {
+//    pthread_mutex_lock( &mutex1 );
+
     const int readSize = 1024;
     char *rc = NULL;
     int received, count = 0;
-    char buffer[1024];
+    char buffer[1025];
     
     if (c)
     {
@@ -155,20 +157,17 @@ char *sslRead (connection *c)
                 rc = realloc (rc, (count + 1) *
                               readSize * sizeof (char) + 1);
             received = SSL_read (c->sslHandle, buffer, readSize);
-            buffer[received] = '\0';
-            
+            if(received >= 0){
+                buffer[received] = '\0';
+            }
             if (received > 0){
                 strcat (rc, buffer);
-                memset(buffer, 0, sizeof(char) * 1024);
+                memset(buffer, '\0', sizeof(char) * 1025);
             }
             
             if(received < 0){
                 free(rc);
                 rc = NULL;
-//                unsigned long error = SSL_get_error(c->sslHandle, received);
-//                char error_s[2048];
-//                
-//                printf("\nError:%s\n", ERR_error_string(error, error_s));
                 log_ssl();
             }
             
