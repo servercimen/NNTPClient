@@ -8,7 +8,7 @@
 
 #import "NNTPClientAppDelegate.h"
 
-#import "RootViewController.h"
+#import "ConnectionConfigurationViewController.h"
 
 @implementation NNTPClientAppDelegate
 
@@ -76,12 +76,6 @@
     [__persistentStoreCoordinator release];
     [_navigationController release];
     [super dealloc];
-}
-
-- (void)awakeFromNib
-{
-    RootViewController *rootViewController = (RootViewController *)[self.navigationController topViewController];
-    rootViewController.managedObjectContext = self.managedObjectContext;
 }
 
 - (void)saveContext

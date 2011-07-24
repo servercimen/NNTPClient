@@ -31,15 +31,60 @@
     return sslConn;
 }
 
--(void) connect {
+-(void) connect
+{
     int portNum = [self.port intValue];
     const char *hostnameCStr = [self.hostname UTF8String];
     c = sslConnect(hostnameCStr, portNum);
 }
 
--(void) disconnect {
+-(void) disconnect
+{
     sslDisconnect(c);
     c = NULL;
+}
+
+-(NSString *) read
+{
+    NSString *dataNSString = @"";
+    int count = 0;
+    while (1) {
+        char *data = sslRead(c);
+        if(data == NULL) {
+            break;
+        }
+        NSString *newChunk = [NSString stringWithUTF8String:data];
+        if(newChunk == nil) {
+            free(data);
+            break; 
+        }
+        NSLog(@"\nRead data: %@\n", newChunk);
+        dataNSString = [dataNSString stringByAppendingString:newChunk];
+        free(data);
+        
+        count++;
+        if(count > 10) {
+            break;
+        }
+    }
+    
+    return dataNSString;
+}
+
+-(void) write:(NSString *)data
+{
+    //data = [data stringByAppendingString:@"\r\n"];
+    const char *dataCStr = [data UTF8String];
+    sslWrite(c, dataCStr);
+    NSLog(@"\nWrite data: %@\n", data);
+}
+
+-(BOOL) isConnected {
+    if(sslIsConnected(c) == 1) {
+        return YES;
+    }
+    
+    return NO;
 }
 
 - (void)dealloc {

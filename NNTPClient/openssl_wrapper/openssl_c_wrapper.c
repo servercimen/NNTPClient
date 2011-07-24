@@ -129,7 +129,6 @@ char *sslRead (connection *c)
             else
                 rc = realloc (rc, (count + 1) *
                               readSize * sizeof (char) + 1);
-            
             received = SSL_read (c->sslHandle, buffer, readSize);
             buffer[received] = '\0';
             
@@ -146,10 +145,21 @@ char *sslRead (connection *c)
 }
 
 // Write text to the connection
-void sslWrite (connection *c, char *text)
+void sslWrite (connection *c, const char *text)
 {
     if (c)
         SSL_write (c->sslHandle, text, strlen (text));
+}
+
+int sslIsConnected(connection *c) {
+    if (c->sslContext == NULL)
+        return 0;
+    
+    if (c->sslHandle == NULL)
+        return 0;
+    
+    return 1;
+    
 }
 
 // Very basic main: we send GET / and print the response.

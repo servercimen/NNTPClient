@@ -23,5 +23,7 @@
 
 -(void) connect;
 -(void) disconnect;
-
+-(NSString *) read;
+-(void) write:(NSString *)data;
+-(BOOL) isConnected;
 @end

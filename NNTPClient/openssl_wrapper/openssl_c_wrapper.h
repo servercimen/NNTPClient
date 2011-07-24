@@ -22,4 +22,5 @@ void sslDisconnect (connection *c);
 char *sslRead (connection *c);
 
 // Write text to the connection
-void sslWrite (connection *c, char *text);
+void sslWrite (connection *c, const char *text);
+int sslIsConnected(connection *c);
