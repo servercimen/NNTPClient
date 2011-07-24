@@ -53,7 +53,7 @@
                                    target:self 
                                    action:@selector(back)] autorelease];
     self.navigationItem.leftBarButtonItem = backButton;
-    [self performSelectorInBackground:@selector(readMessage:) withObject:nil];
+//    [self performSelectorInBackground:@selector(readMessage:) withObject:nil];
 }
 
 - (void)back
@@ -81,9 +81,15 @@
 
 
 - (IBAction)sendMessage {
+    if(![conn isConnected]){
+        NSLog(@"Connection is closed");
+        return ;
+    }
     [messageField resignFirstResponder];
     NSString * message = self.messageField.text;
     [conn write:message];
+    [self readMessage:nil];
+    
 }
 
 - (IBAction)clearResponseField {
@@ -91,15 +97,17 @@
 }
 
 - (void) readMessage:(NSObject *)obj {
-    NSAutoreleasePool *pool = [[NSAutoreleasePool alloc] init];
+    if(![conn isConnected]){
+        NSLog(@"Connection is closed");
+        return ;
+    }
     NSString *readData = [conn read];
-    if(readData)
+    if(readData != nil)
     {
         [self performSelectorOnMainThread:@selector(appendReadData:) withObject:readData waitUntilDone:YES];
+        [self performSelectorInBackground:@selector(readMessage:) withObject:nil];
     }
-    sleep(500);
-    [self performSelectorInBackground:@selector(readMessage:) withObject:nil];
-    [pool release];
+
 }
 
 - (void) appendReadData:(NSString *)data

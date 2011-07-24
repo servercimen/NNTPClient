@@ -20,6 +20,19 @@ typedef struct {
     SSL_CTX *sslContext;
 } connection;
 
+
+int log_ssl(void)
+{
+    char buf[256];
+    u_long err;
+    
+    while ((err = ERR_get_error()) != 0) {
+        ERR_error_string_n(err, buf, sizeof(buf));
+        printf("*** %s\n", buf);
+    }
+    
+    return (0);
+}
 // Establish a regular tcp connection
 int tcpConnect (const char * serverName, int port)
 {
@@ -71,22 +84,31 @@ connection *sslConnect (const char* server, int port)
         SSL_library_init ();
         
         // New context saying we are a client, and using SSL 2 or 3
-        c->sslContext = SSL_CTX_new (SSLv23_client_method ());
+        c->sslContext = SSL_CTX_new (SSLv2_client_method ());
+//        c->sslContext = SSL_CTX_new (DTLSv1_client_method ());
+        
         if (c->sslContext == NULL)
             ERR_print_errors_fp (stderr);
         
         // Create an SSL struct for the connection
         c->sslHandle = SSL_new (c->sslContext);
-        if (c->sslHandle == NULL)
+        if (c->sslHandle == NULL){
             ERR_print_errors_fp (stderr);
+            log_ssl();
+        }
+        
         
         // Connect the SSL struct to our connection
-        if (!SSL_set_fd (c->sslHandle, c->socket))
+        if (!SSL_set_fd (c->sslHandle, c->socket)){
             ERR_print_errors_fp (stderr);
+            log_ssl();
+        }
         
         // Initiate SSL handshake
-        if (SSL_connect (c->sslHandle) != 1)
+        if (SSL_connect (c->sslHandle) != 1){
             ERR_print_errors_fp (stderr);
+            log_ssl();
+        }
     }
     else
     {
@@ -112,6 +134,8 @@ void sslDisconnect (connection *c)
     free (c);
 }
 
+
+
 // Read all available text from the connection
 char *sslRead (connection *c)
 {
@@ -124,6 +148,7 @@ char *sslRead (connection *c)
     {
         while (1)
         {
+
             if (!rc)
                 rc = malloc (readSize * sizeof (char) + 1);
             else
@@ -132,11 +157,25 @@ char *sslRead (connection *c)
             received = SSL_read (c->sslHandle, buffer, readSize);
             buffer[received] = '\0';
             
-            if (received > 0)
+            if (received > 0){
                 strcat (rc, buffer);
+                memset(buffer, 0, sizeof(char) * 1024);
+            }
+            
+            if(received < 0){
+                free(rc);
+                rc = NULL;
+//                unsigned long error = SSL_get_error(c->sslHandle, received);
+//                char error_s[2048];
+//                
+//                printf("\nError:%s\n", ERR_error_string(error, error_s));
+                log_ssl();
+            }
             
             if (received < readSize)
                 break;
+            
+            
             count++;
         }
     }
@@ -161,3 +200,5 @@ int sslIsConnected(connection *c) {
     return 1;
     
 }
+
+

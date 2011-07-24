@@ -20,5 +20,5 @@
 @property (nonatomic, retain) IBOutlet UITextView *responseField;
 - (IBAction)sendMessage;
 - (IBAction)clearResponseField;
-
+- (void) readMessage:(NSObject *) obj;
 @end

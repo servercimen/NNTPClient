@@ -73,12 +73,14 @@
     NSString *port = portField.text;
     SSLConnection *conn = [SSLConnection sslConnectionWithHostname:hostname andPort:port];
     [conn connect];
+
     if([conn isConnected]) {
         MessageViewController *messageView = [[[MessageViewController alloc] init] autorelease];
         messageView.conn = conn;
         [conn write:[NSString stringWithFormat:@"authinfo user %@", self.usernameField.text]];
         [conn write:[NSString stringWithFormat:@"authinfo pass %@", self.passwordField.text]];
         [self.navigationController pushViewController:messageView animated:YES];
+        [messageView readMessage:nil];
     }
 }
 @end

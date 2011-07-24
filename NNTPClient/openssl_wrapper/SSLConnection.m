@@ -1,4 +1,4 @@
-//
+	//
 //  SSLConnection.m
 //  NNTPClient
 //
@@ -46,29 +46,17 @@
 
 -(NSString *) read
 {
-    NSString *dataNSString = @"";
-    int count = 0;
-    while (1) {
-        char *data = sslRead(c);
-        if(data == NULL) {
-            break;
-        }
+    char *data = sslRead(c);
+    if(data != NULL) {
         NSString *newChunk = [NSString stringWithUTF8String:data];
-        if(newChunk == nil) {
-            free(data);
-            break; 
-        }
-        NSLog(@"\nRead data: %@\n", newChunk);
-        dataNSString = [dataNSString stringByAppendingString:newChunk];
+        NSLog(@"\nRead data: \"%@\"%d\n", newChunk, [newChunk length]);
         free(data);
-        
-        count++;
-        if(count > 10) {
-            break;
-        }
+        data = NULL;
+        return newChunk;
+    }else{
+        NSLog(@"\nCan not read data\n");
+        return nil;
     }
-    
-    return dataNSString;
 }
 
 -(void) write:(NSString *)data
