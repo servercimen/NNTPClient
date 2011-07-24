@@ -195,23 +195,23 @@
 #pragma mark - Loading Screen
 - (void)showAwesomeLoading:(NSString *)title
 {
-    UIView *view = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 320, 480)];
+    UIView *view = [[[UIView alloc] initWithFrame:CGRectMake(0, 0, 320, 480)] autorelease];
     view.backgroundColor = [UIColor clearColor];
     view.tag = 99;
     view.alpha = 0;
     
-    UIView *blackView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 150, 150)];
+    UIView *blackView = [[[UIView alloc] initWithFrame:CGRectMake(0, 0, 150, 150)] autorelease];
     blackView.center = view.center;
     blackView.layer.cornerRadius = 10;
     blackView.backgroundColor = [UIColor blackColor];
     blackView.alpha = 0.9;
-    UILabel *label = [[UILabel alloc] initWithFrame:CGRectMake(0, 37, 150, 38)];
+    UILabel *label = [[[UILabel alloc] initWithFrame:CGRectMake(0, 37, 150, 38)] autorelease];
     label.backgroundColor = [UIColor clearColor];
     label.textAlignment = UITextAlignmentCenter;
     label.textColor = [UIColor whiteColor];
     [label setText:title];
     [blackView addSubview:label];
-    UIActivityIndicatorView *activity = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleWhite];
+    UIActivityIndicatorView *activity = [[[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleWhite] autorelease];
     [activity startAnimating];
     activity.center = CGPointMake(label.center.x, label.center.y + 38);
     [blackView addSubview:activity];
