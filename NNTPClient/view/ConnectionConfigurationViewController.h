@@ -9,17 +9,20 @@
 #import <UIKit/UIKit.h>
 
 
-@interface ConnectionConfigurationViewController : UIViewController {
+@interface ConnectionConfigurationViewController : UIViewController <UITextFieldDelegate> {
     
     UITextField *hostnameField;
     UITextField *portField;
     UITextField *usernameField;
     UITextField *passwordField;
 }
-- (IBAction)onConnect;
+
 @property (nonatomic, retain) IBOutlet UITextField *hostnameField;
 @property (nonatomic, retain) IBOutlet UITextField *portField;
 @property (nonatomic, retain) IBOutlet UITextField *usernameField;
 @property (nonatomic, retain) IBOutlet UITextField *passwordField;
+
+- (IBAction)onConnect;
+- (UITextField *) getNextTextField:(UITextField *)textField;
 
 @end
