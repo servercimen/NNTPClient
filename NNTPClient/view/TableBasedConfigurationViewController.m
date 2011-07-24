@@ -138,10 +138,9 @@
     if (cell == nil) {
         cell = [[[UITableViewCell alloc] initWithStyle:UITableViewCellStyleValue1 reuseIdentifier:nil] autorelease];
         cell.accessoryType = UITableViewCellAccessoryNone;
-
+        cell.selectionStyle = UITableViewCellSelectionStyleNone;
         
         if(indexPath.section < 2) {
-            cell.selectionStyle = UITableViewCellSelectionStyleNone;
             UITextField *textField = [[UITextField alloc] initWithFrame:CGRectMake(110, 10, 185, 30)];
             textField.adjustsFontSizeToFitWidth = YES;
             textField.textColor = [UIColor blackColor];
@@ -370,6 +369,7 @@
     
     if(success) {
         [((UITableView *)self.view) reloadSections:[NSIndexSet indexSetWithIndex:2] withRowAnimation:UITableViewRowAnimationFade];
+        [(UITableView *)self.view scrollToRowAtIndexPath:[NSIndexPath indexPathForRow:2 inSection:2] atScrollPosition:UITableViewScrollPositionBottom animated:YES];
     }
 }
 
@@ -432,7 +432,7 @@
             [[self navigationController] pushViewController:messageView animated:YES];
         } else if(indexPath.row == 2) {
             
-            NewsGroupViewController *newsGroup = [[[NewsGroupViewController alloc] initWithNewsGroupData:[NSMutableDictionary dictionaryWithObjectsAndKeys:[[NewsGroupParser retrieveNewsGroups:conn] allValues], @"No-Group", nil] andSSLConnection:conn] autorelease];
+            NewsGroupViewController *newsGroup = [[[NewsGroupViewController alloc] initWithNewsGroupData:[NewsGroupParser retrieveNewsGroups:conn] andSSLConnection:conn] autorelease];
             
             [[self navigationController] pushViewController:newsGroup animated:YES];
         }

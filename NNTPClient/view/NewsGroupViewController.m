@@ -18,10 +18,11 @@
 
 - (id) initWithNewsGroupData:(NSMutableDictionary *)data andSSLConnection:(SSLConnection *)connection
 {
-    self = [super init];
+    self = [super initWithStyle:UITableViewStyleGrouped];
     if (self) {
         self.newsGroupData = data;
         self.conn = connection;
+        
     }
     return self;
 }
@@ -152,6 +153,8 @@
     if (cell == nil) {
         cell = [[[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier] autorelease];
         cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
+        cell.selectionStyle = UITableViewCellSelectionStyleNone;
+        cell.textLabel.lineBreakMode = UILineBreakModeHeadTruncation;
     }
     NewsGroup *newsGroup = [self getNewsGroupAtIndexPath:indexPath];
     cell.textLabel.text = newsGroup.name;

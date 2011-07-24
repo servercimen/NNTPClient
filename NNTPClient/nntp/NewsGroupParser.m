@@ -35,24 +35,44 @@
     
     
     //get newsgroup descriptions
-    [conn write:@"list active"];
+    [conn write:@"list newsgroups"];
     newsgroupsResponse =  [conn readUntilMessageArrives];
     lines = [newsgroupsResponse componentsSeparatedByString:@"\n"];
     for(NSString *line in lines)
     {
         if(![line hasPrefix:@"\x0f"] && ![line hasPrefix:@"."]){
             NSLog(@"Decided to process: %@", line);
-            NSArray *lineElements = [line componentsSeparatedByString:@" "];
-            if([lineElements count] == 2){
-                if([dict objectForKey:[lineElements objectAtIndex:0]] != nil){
-                    ((NewsGroup *)[dict objectForKey:[lineElements objectAtIndex:0]]).title =  [lineElements objectAtIndex:0];
-                }
+            NSArray *lineElements = [line componentsSeparatedByString:@"\t"];
+            //TODO: fix
+            if([dict objectForKey:[lineElements objectAtIndex:0]] != nil){
+                ((NewsGroup *)[dict objectForKey:[lineElements objectAtIndex:0]]).title =  [lineElements lastObject];
             }
         }
     }
     
+    NSMutableDictionary *groupedNewsGroups = [NSMutableDictionary dictionary];
+    for (NSString* key in dict) {
+        NewsGroup *news = [dict objectForKey:key];
+        
+        NSString *groupId = [news
+                             getGroupID];
+        NSMutableArray *group = [groupedNewsGroups objectForKey:groupId];
+        [group sortUsingComparator:^NSComparisonResult(id obj1, id obj2) {
+            NewsGroup *news1 = obj1;
+            NewsGroup *news2 = obj2;
+            
+            return [news1.name compare:news2.name];
+        }];
+        if(group == nil) {
+            group = [NSMutableArray array];
+        }
+        
+        [group addObject:news];
+        [groupedNewsGroups setObject:group forKey:groupId];
+    }
     
-    return dict;
+    
+    return groupedNewsGroups;
 }
 
 @end

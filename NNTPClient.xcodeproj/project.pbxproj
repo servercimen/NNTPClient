@@ -55,6 +55,10 @@
 		46476E0813DAFFAF00D32152 /* libcrypto.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 46476E0513DAFFAF00D32152 /* libcrypto.a */; };
 		46476E0913DAFFAF00D32152 /* libssl.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 46476E0613DAFFAF00D32152 /* libssl.a */; };
 		46476E0A13DAFFAF00D32152 /* libssl.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 46476E0613DAFFAF00D32152 /* libssl.a */; };
+		46A98E8313DCC34200AA5757 /* cow2.png in Resources */ = {isa = PBXBuildFile; fileRef = 46A98E8213DCC34100AA5757 /* cow2.png */; };
+		46A98E8413DCC34200AA5757 /* cow2.png in Resources */ = {isa = PBXBuildFile; fileRef = 46A98E8213DCC34100AA5757 /* cow2.png */; };
+		46A98E8713DCC37100AA5757 /* cow_small.png in Resources */ = {isa = PBXBuildFile; fileRef = 46A98E8613DCC37100AA5757 /* cow_small.png */; };
+		46A98E8813DCC37100AA5757 /* cow_small.png in Resources */ = {isa = PBXBuildFile; fileRef = 46A98E8613DCC37100AA5757 /* cow_small.png */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -86,7 +90,7 @@
 		4624034313DC94970042F2B0 /* NewsGroupViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NewsGroupViewController.h; sourceTree = "<group>"; };
 		4624034413DC94970042F2B0 /* NewsGroupViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NewsGroupViewController.m; sourceTree = "<group>"; };
 		4624034513DC94980042F2B0 /* NewsGroupViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = NewsGroupViewController.xib; sourceTree = "<group>"; };
-		46476DB713DAF53300D32152 /* NNTPClient.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = NNTPClient.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		46476DB713DAF53300D32152 /* C.O.W..app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = C.O.W..app; sourceTree = BUILT_PRODUCTS_DIR; };
 		46476DBB13DAF53300D32152 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		46476DBD13DAF53300D32152 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		46476DBF13DAF53300D32152 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
@@ -186,6 +190,8 @@
 		46476E5213DB00CD00D32152 /* x509.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = x509.h; sourceTree = "<group>"; };
 		46476E5313DB00CD00D32152 /* x509_vfy.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = x509_vfy.h; sourceTree = "<group>"; };
 		46476E5413DB00CD00D32152 /* x509v3.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = x509v3.h; sourceTree = "<group>"; };
+		46A98E8213DCC34100AA5757 /* cow2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = cow2.png; sourceTree = "<group>"; };
+		46A98E8613DCC37100AA5757 /* cow_small.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = cow_small.png; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -260,6 +266,8 @@
 		46476DAC13DAF53300D32152 = {
 			isa = PBXGroup;
 			children = (
+				46A98E8613DCC37100AA5757 /* cow_small.png */,
+				46A98E8213DCC34100AA5757 /* cow2.png */,
 				46476E0B13DB00CD00D32152 /* include */,
 				46476DC313DAF53300D32152 /* NNTPClient */,
 				46476DE713DAF53300D32152 /* NNTPClientTests */,
@@ -271,7 +279,7 @@
 		46476DB813DAF53300D32152 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				46476DB713DAF53300D32152 /* NNTPClient.app */,
+				46476DB713DAF53300D32152 /* C.O.W..app */,
 				46476DE013DAF53300D32152 /* NNTPClientTests.octest */,
 			);
 			name = Products;
@@ -455,7 +463,7 @@
 			);
 			name = NNTPClient;
 			productName = NNTPClient;
-			productReference = 46476DB713DAF53300D32152 /* NNTPClient.app */;
+			productReference = 46476DB713DAF53300D32152 /* C.O.W..app */;
 			productType = "com.apple.product-type.application";
 		};
 		46476DDF13DAF53300D32152 /* NNTPClientTests */ = {
@@ -515,6 +523,8 @@
 				4624032A13DB14660042F2B0 /* MessageViewController.xib in Resources */,
 				4624033113DC505B0042F2B0 /* TableBasedConfigurationViewController.xib in Resources */,
 				4624034813DC94990042F2B0 /* NewsGroupViewController.xib in Resources */,
+				46A98E8313DCC34200AA5757 /* cow2.png in Resources */,
+				46A98E8713DCC37100AA5757 /* cow_small.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -528,6 +538,8 @@
 				4624032B13DB14660042F2B0 /* MessageViewController.xib in Resources */,
 				4624033213DC505B0042F2B0 /* TableBasedConfigurationViewController.xib in Resources */,
 				4624034913DC94990042F2B0 /* NewsGroupViewController.xib in Resources */,
+				46A98E8413DCC34200AA5757 /* cow2.png in Resources */,
+				46A98E8813DCC37100AA5757 /* cow_small.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -682,7 +694,7 @@
 					"-lssl",
 					"-lcrypto",
 				);
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_NAME = C.O.W.;
 				USER_HEADER_SEARCH_PATHS = include;
 				WRAPPER_EXTENSION = app;
 			};
@@ -704,7 +716,7 @@
 					"-lssl",
 					"-lcrypto",
 				);
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_NAME = C.O.W.;
 				USER_HEADER_SEARCH_PATHS = include;
 				VALIDATE_PRODUCT = YES;
 				WRAPPER_EXTENSION = app;
