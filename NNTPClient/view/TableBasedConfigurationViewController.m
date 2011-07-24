@@ -8,6 +8,7 @@
 
 #import "TableBasedConfigurationViewController.h"
 #import "SSLConnection.h"
+#import "SSLAuth.h"
 #import "MessageViewController.h"
 #import "NNTPClientAppDelegate.h"
 
@@ -286,11 +287,19 @@
     [cell setAccessoryType:UITableViewCellAccessoryDisclosureIndicator];
     
     if([result intValue]) {
-        MessageViewController *messageView = [[[MessageViewController alloc] init] autorelease];
-        messageView.conn = conn;
-        [conn write:[NSString stringWithFormat:@"authinfo user %@", usernameField.text]];
-        [conn write:[NSString stringWithFormat:@"authinfo pass %@", passwordField.text]];
-        [self.navigationController pushViewController:messageView animated:YES];
+        SSLAuth *auth = [[[SSLAuth alloc] initWithConnection:conn] autorelease];
+        if([auth authenticateWithUsername:usernameField.text andPassword:passwordField.text]) {
+            MessageViewController *messageView = [[[MessageViewController alloc] init] autorelease];
+            messageView.conn = conn;
+            [self.navigationController pushViewController:messageView animated:YES];
+        } else {
+            UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"Error" message:@"Authentication failed please check your credentials." delegate:nil cancelButtonTitle:@"Dismiss" otherButtonTitles:nil];
+            
+            [alertView show];
+            [alertView release];
+            
+            [conn disconnect];
+        }
     } else {
         UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"Error" message:@"Connection failed, please check your configuration." delegate:nil cancelButtonTitle:@"Dismiss" otherButtonTitles:nil];
 

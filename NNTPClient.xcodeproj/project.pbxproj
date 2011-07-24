@@ -19,6 +19,8 @@
 		4624033013DC505B0042F2B0 /* TableBasedConfigurationViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4624032D13DC505A0042F2B0 /* TableBasedConfigurationViewController.m */; };
 		4624033113DC505B0042F2B0 /* TableBasedConfigurationViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4624032E13DC505A0042F2B0 /* TableBasedConfigurationViewController.xib */; };
 		4624033213DC505B0042F2B0 /* TableBasedConfigurationViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4624032E13DC505A0042F2B0 /* TableBasedConfigurationViewController.xib */; };
+		4624034113DC818D0042F2B0 /* SSLAuth.m in Sources */ = {isa = PBXBuildFile; fileRef = 4624034013DC818C0042F2B0 /* SSLAuth.m */; };
+		4624034213DC818D0042F2B0 /* SSLAuth.m in Sources */ = {isa = PBXBuildFile; fileRef = 4624034013DC818C0042F2B0 /* SSLAuth.m */; };
 		46476DBC13DAF53300D32152 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 46476DBB13DAF53300D32152 /* UIKit.framework */; };
 		46476DBE13DAF53300D32152 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 46476DBD13DAF53300D32152 /* Foundation.framework */; };
 		46476DC013DAF53300D32152 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 46476DBF13DAF53300D32152 /* CoreGraphics.framework */; };
@@ -67,6 +69,8 @@
 		4624032C13DC505A0042F2B0 /* TableBasedConfigurationViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TableBasedConfigurationViewController.h; sourceTree = "<group>"; };
 		4624032D13DC505A0042F2B0 /* TableBasedConfigurationViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TableBasedConfigurationViewController.m; sourceTree = "<group>"; };
 		4624032E13DC505A0042F2B0 /* TableBasedConfigurationViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TableBasedConfigurationViewController.xib; sourceTree = "<group>"; };
+		4624033F13DC818C0042F2B0 /* SSLAuth.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SSLAuth.h; sourceTree = "<group>"; };
+		4624034013DC818C0042F2B0 /* SSLAuth.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SSLAuth.m; sourceTree = "<group>"; };
 		46476DB713DAF53300D32152 /* NNTPClient.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = NNTPClient.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		46476DBB13DAF53300D32152 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		46476DBD13DAF53300D32152 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -299,6 +303,8 @@
 		46476DFB13DAFCCB00D32152 /* openssl_wrapper */ = {
 			isa = PBXGroup;
 			children = (
+				4624033F13DC818C0042F2B0 /* SSLAuth.h */,
+				4624034013DC818C0042F2B0 /* SSLAuth.m */,
 				46476DFC13DAFCEE00D32152 /* SSLConnection.h */,
 				46476DFD13DAFCEE00D32152 /* SSLConnection.m */,
 				46476E0013DAFE0A00D32152 /* openssl_c_wrapper.c */,
@@ -517,6 +523,7 @@
 				4624032113DB0DA90042F2B0 /* ConnectionConfigurationViewController.m in Sources */,
 				4624032813DB14660042F2B0 /* MessageViewController.m in Sources */,
 				4624032F13DC505B0042F2B0 /* TableBasedConfigurationViewController.m in Sources */,
+				4624034113DC818D0042F2B0 /* SSLAuth.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -530,6 +537,7 @@
 				4624032213DB0DA90042F2B0 /* ConnectionConfigurationViewController.m in Sources */,
 				4624032913DB14660042F2B0 /* MessageViewController.m in Sources */,
 				4624033013DC505B0042F2B0 /* TableBasedConfigurationViewController.m in Sources */,
+				4624034213DC818D0042F2B0 /* SSLAuth.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

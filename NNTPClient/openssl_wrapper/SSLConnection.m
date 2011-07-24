@@ -71,6 +71,7 @@
     while(!readData)
     {
         readData = [self read];
+        sleep(100);
     }
     return readData;
 }
