@@ -73,7 +73,7 @@
 
 -(void) write:(NSString *)data
 {
-    //data = [data stringByAppendingString:@"\r\n"];
+    data = [data stringByAppendingString:@"\n"];
     const char *dataCStr = [data UTF8String];
     sslWrite(c, dataCStr);
     NSLog(@"\nWrite data: %@\n", data);

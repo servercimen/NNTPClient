@@ -161,22 +161,3 @@ int sslIsConnected(connection *c) {
     return 1;
     
 }
-
-// Very basic main: we send GET / and print the response.
-/*int main (int argc, char **argv)
-{
-    connection *c;
-    char *response;
-    
-    c = sslConnect ();
-    
-    sslWrite (c, "GET /\r\n\r\n");
-    response = sslRead (c);
-    
-    printf ("%s\n", response);
-    
-    sslDisconnect (c);
-    free (response);
-    
-    return 0;
-}*/
