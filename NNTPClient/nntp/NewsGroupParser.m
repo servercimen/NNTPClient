@@ -13,6 +13,8 @@
 @implementation NewsGroupParser
 
 +(NSMutableDictionary *)retrieveNewsGroups:(SSLConnection *)conn{
+    
+    //get newsgroup items;
     [conn write:@"list active"];
     NSString *newsgroupsResponse =  [conn readUntilMessageArrives];
     NSArray *lines = [newsgroupsResponse componentsSeparatedByString:@"\n"];
@@ -29,8 +31,27 @@
                 [dict setValue:newsgroup forKey:[newsgroup name]];
             }
         }
-        // do something with lineElements
     }
+    
+    
+    //get newsgroup descriptions
+    [conn write:@"list active"];
+    newsgroupsResponse =  [conn readUntilMessageArrives];
+    lines = [newsgroupsResponse componentsSeparatedByString:@"\n"];
+    for(NSString *line in lines)
+    {
+        if(![line hasPrefix:@"\x0f"] && ![line hasPrefix:@"."]){
+            NSLog(@"Decided to process: %@", line);
+            NSArray *lineElements = [line componentsSeparatedByString:@" "];
+            if([lineElements count] == 2){
+                if([dict objectForKey:[lineElements objectAtIndex:0]] != nil){
+                    ((NewsGroup *)[dict objectForKey:[lineElements objectAtIndex:0]]).title =  [lineElements objectAtIndex:0];
+                }
+            }
+        }
+    }
+    
+    
     return dict;
 }
 
