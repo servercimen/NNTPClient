@@ -17,9 +17,9 @@
     //Name of the newsgroup
     NSString *name;
     //high water mark for the group
-    NSNumber *high;
+    NSDecimalNumber *high;
     //low water mark for the group
-    NSNumber *low;
+    NSDecimalNumber *low;
     //status of group
     NSString *status;
     
@@ -29,11 +29,11 @@
 }
 @property(nonatomic, retain) NSString *title;
 @property(nonatomic, retain) NSString *name;
-@property(nonatomic, retain) NSNumber *high;
-@property(nonatomic, retain) NSNumber *low;
+@property(nonatomic, retain) NSDecimalNumber *high;
+@property(nonatomic, retain) NSDecimalNumber *low;
 @property(nonatomic, retain) NSString *status;
 
--(id) initWithName: (NSString *)name andHigh:(NSNumber *)high andLow:(NSNumber *)low andStatus:(NSString *)status;
+-(id) initWithName: (NSString *)name andHigh:(NSDecimalNumber *)high andLow:(NSDecimalNumber *)low andStatus:(NSString *)status;
 //logical group name
 -(NSString *) getGroupID;
 -(NSString *) getGroupName;

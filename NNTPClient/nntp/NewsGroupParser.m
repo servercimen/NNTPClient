@@ -20,6 +20,8 @@
     NSArray *lines = [newsgroupsResponse componentsSeparatedByString:@"\n"];
     NSMutableDictionary *dict = [NSMutableDictionary dictionary];
     NSNumberFormatter * f = [[[NSNumberFormatter alloc] init] autorelease];
+    [f setFormatterBehavior:NSNumberFormatterBehavior10_4];
+    [f setGeneratesDecimalNumbers:YES];
     [f setNumberStyle:NSNumberFormatterDecimalStyle];
     for(NSString *line in lines)
     {
@@ -73,6 +75,17 @@
     
     
     return groupedNewsGroups;
+}
+
++(NSArray *) retrieveHeaders:(SSLConnection *)conn andNewsGroup:(NewsGroup *)newsgroup{
+    return [NewsGroupParser retrieveHeaders:conn andNewsGroup:newsgroup andLimit:[NSNumber numberWithInt:10]];
+}
++(NSArray *) retrieveHeaders:(SSLConnection *)conn andNewsGroup:(NewsGroup *)newsgroup andLimit:(NSNumber *)limit{
+    NSArray *headers = [NSArray array];
+    NSDecimal *start = newsgroup.high;
+    NSDecimal *end = newsgroup.low;
+    return nil;
+    
 }
 
 @end

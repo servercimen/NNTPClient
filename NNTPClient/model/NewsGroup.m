@@ -18,7 +18,7 @@
 @synthesize status;
 
 
--(id) initWithName:(NSString *)name andHigh:(NSNumber *)high andLow:(NSNumber *)low andStatus:(NSString *)status
+-(id) initWithName:(NSString *)name andHigh:(NSDecimalNumber *)high andLow:(NSDecimalNumber *)low andStatus:(NSString *)status
 {
     self = [super init];
     if(self)
@@ -58,8 +58,6 @@
 - (void)dealloc {
     [title release];
     [name release];
-    [high release];
-    [low release];
     [status release];
     [super dealloc];
 }

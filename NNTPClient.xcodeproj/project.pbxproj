@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		0C28D0EC13DDFE1200EBFE6E /* ArticleHeader.m in Sources */ = {isa = PBXBuildFile; fileRef = 0C28D0EB13DDFE1200EBFE6E /* ArticleHeader.m */; };
+		0C28D0ED13DDFE1200EBFE6E /* ArticleHeader.m in Sources */ = {isa = PBXBuildFile; fileRef = 0C28D0EB13DDFE1200EBFE6E /* ArticleHeader.m */; };
 		0CE735E313DC986300B9567F /* NewsGroup.m in Sources */ = {isa = PBXBuildFile; fileRef = 0CE735DF13DC986300B9567F /* NewsGroup.m */; };
 		0CE735E413DC986300B9567F /* NewsGroup.m in Sources */ = {isa = PBXBuildFile; fileRef = 0CE735DF13DC986300B9567F /* NewsGroup.m */; };
 		0CE735E513DC986300B9567F /* SSLAuth.m in Sources */ = {isa = PBXBuildFile; fileRef = 0CE735E213DC986300B9567F /* SSLAuth.m */; };
@@ -72,6 +74,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		0C28D0EA13DDFE1200EBFE6E /* ArticleHeader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ArticleHeader.h; sourceTree = "<group>"; };
+		0C28D0EB13DDFE1200EBFE6E /* ArticleHeader.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ArticleHeader.m; sourceTree = "<group>"; };
 		0CE735DE13DC986300B9567F /* NewsGroup.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NewsGroup.h; sourceTree = "<group>"; };
 		0CE735DF13DC986300B9567F /* NewsGroup.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NewsGroup.m; sourceTree = "<group>"; };
 		0CE735E113DC986300B9567F /* SSLAuth.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SSLAuth.h; sourceTree = "<group>"; };
@@ -229,6 +233,8 @@
 			children = (
 				0CE735DE13DC986300B9567F /* NewsGroup.h */,
 				0CE735DF13DC986300B9567F /* NewsGroup.m */,
+				0C28D0EA13DDFE1200EBFE6E /* ArticleHeader.h */,
+				0C28D0EB13DDFE1200EBFE6E /* ArticleHeader.m */,
 			);
 			path = model;
 			sourceTree = "<group>";
@@ -579,6 +585,7 @@
 				0CE735E313DC986300B9567F /* NewsGroup.m in Sources */,
 				0CE735E513DC986300B9567F /* SSLAuth.m in Sources */,
 				0CE735EA13DC996E00B9567F /* NewsGroupParser.m in Sources */,
+				0C28D0EC13DDFE1200EBFE6E /* ArticleHeader.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -596,6 +603,7 @@
 				0CE735E413DC986300B9567F /* NewsGroup.m in Sources */,
 				0CE735E613DC986300B9567F /* SSLAuth.m in Sources */,
 				0CE735EB13DC996E00B9567F /* NewsGroupParser.m in Sources */,
+				0C28D0ED13DDFE1200EBFE6E /* ArticleHeader.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

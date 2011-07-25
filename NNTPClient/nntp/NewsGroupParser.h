@@ -8,11 +8,15 @@
 
 #import <Foundation/Foundation.h>
 #import "SSLConnection.h"
+#import "NewsGroup.h"
 
 @interface NewsGroupParser : NSObject {
     
 }
 
 +(NSMutableDictionary *) retrieveNewsGroups: (SSLConnection *)conn;
++(NSArray *) retrieveHeaders:(SSLConnection *)conn andNewsGroup:(NewsGroup *) newsgroup;
++(NSArray *) retrieveHeaders:(SSLConnection *)conn andNewsGroup:(NewsGroup *) newsgroup andLimit:(NSNumber *)limit;
+
 
 @end
