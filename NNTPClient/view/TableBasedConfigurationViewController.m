@@ -131,12 +131,17 @@
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    //static NSString *CellIdentifier = @"Cell";
-    
-//    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
+    static NSString *CellIdentifier = @"Cell";
     UITableViewCell *cell = nil;
+    NSString *reuseIdentifier = nil;
+    
+    if(indexPath.section < 2) {
+        cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
+        reuseIdentifier = CellIdentifier;
+    }
+
     if (cell == nil) {
-        cell = [[[UITableViewCell alloc] initWithStyle:UITableViewCellStyleValue1 reuseIdentifier:nil] autorelease];
+        cell = [[[UITableViewCell alloc] initWithStyle:UITableViewCellStyleValue1 reuseIdentifier:reuseIdentifier] autorelease];
         cell.accessoryType = UITableViewCellAccessoryNone;
         cell.selectionStyle = UITableViewCellSelectionStyleNone;
         
@@ -159,22 +164,7 @@
             
             [textField release];
             textField.returnKeyType = UIReturnKeyNext;
-            if(indexPath.section == 0) {
-                if(indexPath.row == 0) {
-                    textField.text = @"news.ceng.metu.edu.tr";
-                } else if(indexPath.row == 1) {
-                    textField.text = @"563";
-                    textField.keyboardType = UIKeyboardTypeNumbersAndPunctuation;
-                }
-            } else if(indexPath.section == 1) {
-                if(indexPath.row == 0) {
-                    textField.text = @"e1560697";
-                } else if(indexPath.row == 1) {
-                    textField.text = @"";
-                    textField.secureTextEntry = YES;
-                    textField.returnKeyType = UIReturnKeyDone;
-                }
-            }
+            
             [textViews setObject:textField forKey:[self keyFromIndexPath:indexPath]];
         } else if(indexPath.section == 2) {
             if(indexPath.row == 0) {
@@ -185,8 +175,28 @@
                 [cell addSubview: connectionControl];
                 [connectionControl release];
             } else {
+                cell.selectionStyle = UITableViewCellSelectionStyleBlue;
                 cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;                
             }
+        }
+    }
+    
+    UITextField *textField = (UITextField *)[cell viewWithTag:1];
+    
+    if(indexPath.section == 0) {
+        if(indexPath.row == 0) {
+            textField.text = @"news.ceng.metu.edu.tr";
+        } else if(indexPath.row == 1) {
+            textField.text = @"563";
+            textField.keyboardType = UIKeyboardTypeNumbersAndPunctuation;
+        }
+    } else if(indexPath.section == 1) {
+        if(indexPath.row == 0) {
+            textField.text = @"e1560697";
+        } else if(indexPath.row == 1) {
+            textField.text = @"";
+            textField.secureTextEntry = YES;
+            textField.returnKeyType = UIReturnKeyDone;
         }
     }
 
@@ -431,11 +441,14 @@
             
             [[self navigationController] pushViewController:messageView animated:YES];
         } else if(indexPath.row == 2) {
-            
+            UITableViewCell *cell = [tableView cellForRowAtIndexPath:indexPath];
+            cell.userInteractionEnabled = NO;
             NewsGroupViewController *newsGroup = [[[NewsGroupViewController alloc] initWithNewsGroupData:[NewsGroupParser retrieveNewsGroups:conn] andSSLConnection:conn] autorelease];
             
             [[self navigationController] pushViewController:newsGroup animated:YES];
+            cell.userInteractionEnabled = YES;
         }
+        [tableView deselectRowAtIndexPath:indexPath animated:YES];
     }
 }
 

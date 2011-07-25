@@ -14,7 +14,7 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "46476DB613DAF53300D32152"
-               BuildableName = "NNTPClient.app"
+               BuildableName = "C.O.W..app"
                BlueprintName = "NNTPClient"
                ReferencedContainer = "container:NNTPClient.xcodeproj">
             </BuildableReference>
@@ -51,7 +51,7 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "46476DB613DAF53300D32152"
-            BuildableName = "NNTPClient.app"
+            BuildableName = "C.O.W..app"
             BlueprintName = "NNTPClient"
             ReferencedContainer = "container:NNTPClient.xcodeproj">
          </BuildableReference>
@@ -70,7 +70,7 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "46476DB613DAF53300D32152"
-            BuildableName = "NNTPClient.app"
+            BuildableName = "C.O.W..app"
             BlueprintName = "NNTPClient"
             ReferencedContainer = "container:NNTPClient.xcodeproj">
          </BuildableReference>
