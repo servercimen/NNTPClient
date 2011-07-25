@@ -9,6 +9,7 @@
 #import "NewsGroupParser.h"
 #import "SSLConnection.h"
 #import "NewsGroup.h"
+#import "ArticleHeader.h"
 
 @implementation NewsGroupParser
 
@@ -78,14 +79,31 @@
 }
 
 +(NSArray *) retrieveHeaders:(SSLConnection *)conn andNewsGroup:(NewsGroup *)newsgroup{
-    return [NewsGroupParser retrieveHeaders:conn andNewsGroup:newsgroup andLimit:[NSNumber numberWithInt:10]];
+    return [NewsGroupParser retrieveHeaders:conn andNewsGroup:newsgroup andLimit:[NSDecimalNumber numberWithInt:10]];
 }
-+(NSArray *) retrieveHeaders:(SSLConnection *)conn andNewsGroup:(NewsGroup *)newsgroup andLimit:(NSNumber *)limit{
-    NSArray *headers = [NSArray array];
-    NSDecimal *start = newsgroup.high;
-    NSDecimal *end = newsgroup.low;
-    return nil;
++(NSArray *) retrieveHeaders:(SSLConnection *)conn andNewsGroup:(NewsGroup *)newsgroup andLimit:(NSDecimalNumber *)limit{
+    NSMutableArray *headers = [NSMutableArray array];
+    NSDecimalNumber *start = newsgroup.high;
+    NSDecimalNumber *end = newsgroup.low;
+    if([start decimalNumberBySubtracting:end] > limit){
+        end = [start decimalNumberBySubtracting:limit];
+    }
     
+    for (int i = [start intValue]; i >= [end intValue]; i--) {
+
+        [headers addObject:[NewsGroupParser retrieveArticleHeader:conn andArticle:i]];
+        
+    }
+    
+    return headers;
+    
+}
+
++(ArticleHeader *) retrieveArticleHeader: (SSLConnection *)conn andArticle:(int)articleID{
+    [conn write:[NSString stringWithFormat:@"HEAD %d", articleID]];
+    NSString *header = [conn readUntilMessageArrives];
+    //TODO parser properly
+    return nil;
 }
 
 @end
