@@ -194,7 +194,7 @@
         if(indexPath.row == 0) {
             textField.text = @"e1560689";
         } else if(indexPath.row == 1) {
-            textField.text = @"mgln!?83";
+            textField.text = @"";
             textField.secureTextEntry = YES;
             textField.returnKeyType = UIReturnKeyDone;
         }
