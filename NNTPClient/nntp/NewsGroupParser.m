@@ -88,22 +88,67 @@
     if([start decimalNumberBySubtracting:end] > limit){
         end = [start decimalNumberBySubtracting:limit];
     }
-    
-    for (int i = [start intValue]; i >= [end intValue]; i--) {
 
-        [headers addObject:[NewsGroupParser retrieveArticleHeader:conn andArticle:i]];
-        
+    [conn write:[NSString stringWithFormat:@"GROUP %@", newsgroup.name]];
+    [conn readUntilMessageArrives];
+    int i = [start intValue];
+    i--;
+    while(i > [end intValue]) {
+        ArticleHeader * header = [NewsGroupParser retrieveArticleHeader:conn andArticle:i];
+        if (header) {
+            [headers addObject:header];
+        }
+        i--;
     }
-    
     return headers;
     
 }
 
 +(ArticleHeader *) retrieveArticleHeader: (SSLConnection *)conn andArticle:(int)articleID{
     [conn write:[NSString stringWithFormat:@"HEAD %d", articleID]];
-    NSString *header = [conn readUntilMessageArrives];
-    //TODO parser properly
-    return nil;
+    NSString *headResponse = [conn readUntilMessageArrives];
+    if ([headResponse hasPrefix:@"423"]) {
+        return nil;
+    } else if ([headResponse length] == 0){
+        return nil;
+    } else {
+        while ([[headResponse componentsSeparatedByString:@"\n"] count] <= 2) {
+            headResponse = [headResponse  stringByAppendingString:[conn readUntilMessageArrives]];
+        }
+    }
+    NSArray *lines = [headResponse componentsSeparatedByString:@"\n"];
+    ArticleHeader *header = [[[ArticleHeader alloc] init] autorelease];
+    bool valid = false;
+    for(NSString *line in lines)
+    {
+        if(![line hasPrefix:@"\x0f"] && ![line hasPrefix:@"."]){
+            for (NSString *fieldKey in [header.headerFieldMapping allKeys] ) {
+                if ([line hasPrefix:fieldKey]) {
+                    NSArray *parts = [line componentsSeparatedByString:[fieldKey stringByAppendingString:@":"]];
+                    id value = [parts objectAtIndex:1];
+                    
+                    if ([fieldKey isEqualToString:@"References"]) {
+                        value = [[parts objectAtIndex:1] componentsSeparatedByString:@" "];
+                    }
+                    
+                    [header setHeader:fieldKey withValue:value];
+                    valid = true;
+                } else {
+                }
+            }
+
+        }
+    }
+    if (valid){
+        return header;
+    } else {
+        return nil;
+    }
+}
+
++(NSString *) retrieveArticleBody: (SSLConnection *)conn andArticle:(int) articleID {
+    [conn write:[NSString stringWithFormat:@"BODY %d", articleID]];
+    NSString *headResponse = [conn readUntilMessageArrives];
 }
 
 @end

@@ -192,9 +192,9 @@
         }
     } else if(indexPath.section == 1) {
         if(indexPath.row == 0) {
-            textField.text = @"e1560697";
+            textField.text = @"e1560689";
         } else if(indexPath.row == 1) {
-            textField.text = @"";
+            textField.text = @"mgln!?83";
             textField.secureTextEntry = YES;
             textField.returnKeyType = UIReturnKeyDone;
         }

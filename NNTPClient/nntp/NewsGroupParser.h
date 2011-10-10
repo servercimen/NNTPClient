@@ -10,6 +10,7 @@
 #import "SSLConnection.h"
 #import "NewsGroup.h"
 #import "ArticleHeader.h"
+#import "Article.h"
 
 @interface NewsGroupParser : NSObject {
     
@@ -19,5 +20,6 @@
 +(NSArray *) retrieveHeaders:(SSLConnection *)conn andNewsGroup:(NewsGroup *) newsgroup;
 +(NSArray *) retrieveHeaders:(SSLConnection *)conn andNewsGroup:(NewsGroup *) newsgroup andLimit:(NSDecimalNumber *)limit;
 +(ArticleHeader *) retrieveArticleHeader: (SSLConnection *)conn andArticle:(int) articleID;
++(NSString *) retrieveArticleBody: (SSLConnection *)conn andArticle:(int) articleID;
 
 @end

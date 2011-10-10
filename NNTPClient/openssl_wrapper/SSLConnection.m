@@ -66,7 +66,6 @@
 
 -(NSString *)readUntilMessageArrives
 {
-
     NSString *readData = [self read];
     while(!readData && [self isConnected])
     {

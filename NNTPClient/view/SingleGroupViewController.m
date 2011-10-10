@@ -1,33 +1,18 @@
 //
-//  NewsGroupViewController.m
+//  SingleGroupViewController.m
 //  NNTPClient
 //
-//  Created by Server Cimen on 7/24/11.
+//  Created by cihancimen on 10/4/11.
 //  Copyright 2011 SpeedDate.com. All rights reserved.
 //
 
-#import "NewsGroupViewController.h"
-#import "NewsGroup.h"
-#import "NewsGroupParser.h"
-#import "SSLConnection.h"
 #import "SingleGroupViewController.h"
+#import "Article.h"
 
+@implementation SingleGroupViewController
 
-@implementation NewsGroupViewController
-
-@synthesize newsGroupData;
+@synthesize mailHeaders;
 @synthesize conn;
-
-- (id) initWithNewsGroupData:(NSMutableDictionary *)data andSSLConnection:(SSLConnection *)connection
-{
-    self = [super initWithStyle:UITableViewStyleGrouped];
-    if (self) {
-        self.newsGroupData = data;
-        self.conn = connection;
-        
-    }
-    return self;
-}
 
 - (id)initWithStyle:(UITableViewStyle)style
 {
@@ -38,12 +23,15 @@
     return self;
 }
 
-- (void)dealloc
+- (id) initWithMailHeaders:(NSArray *)headers andSSLConnection:(SSLConnection *)connection
 {
-    [newsGroupData release];
-    [conn release];
-    
-    [super dealloc];
+    self = [super initWithStyle:UITableViewStyleGrouped];
+    if (self) {
+        self.mailHeaders = headers;
+        self.conn = connection;
+        
+    }
+    return self;
 }
 
 - (void)didReceiveMemoryWarning
@@ -59,22 +47,12 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    UIBarButtonItem *backButton = [[[UIBarButtonItem alloc] 
-                                    initWithTitle: @"Back" 
-                                    style:UIBarButtonItemStylePlain 
-                                    target:self 
-                                    action:@selector(back)] autorelease];
-    self.navigationItem.leftBarButtonItem = backButton;
+
     // Uncomment the following line to preserve selection between presentations.
     // self.clearsSelectionOnViewWillAppear = NO;
  
     // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
     // self.navigationItem.rightBarButtonItem = self.editButtonItem;
-}
-
-- (void)back
-{
-    [[self navigationController] popViewControllerAnimated:YES];
 }
 
 - (void)viewDidUnload
@@ -114,37 +92,12 @@
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
-    return [newsGroupData count];
-}
-
-- (NSString *) tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section
-{
-    return [[newsGroupData allKeys] objectAtIndex:section];
+    return 1;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    return [[self getNewsGroupAtIndex:section] count];
-}
-
-- (NewsGroup *) getNewsGroupAtIndexPath:(NSIndexPath *)indexPath
-{
-    NSArray *group = [self getNewsGroupAtIndex:indexPath.section];
-    return [group objectAtIndex:indexPath.row];
-}
-
-- (NSArray *) getNewsGroupAtIndex:(NSInteger)index
-{
-    int i = 0;
-    for (NSString *key in newsGroupData) {
-        if(i == index) {
-            return [newsGroupData objectForKey:key];
-        }
-        
-        i++;
-    }
-    
-    return nil;
+    return [mailHeaders count];
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
@@ -158,8 +111,10 @@
         cell.selectionStyle = UITableViewCellSelectionStyleNone;
         cell.textLabel.lineBreakMode = UILineBreakModeHeadTruncation;
     }
-    NewsGroup *newsGroup = [self getNewsGroupAtIndexPath:indexPath];
-    cell.textLabel.text = newsGroup.name;
+
+    ArticleHeader * header = [self.mailHeaders objectAtIndex:indexPath.row];
+    cell.textLabel.text = [[header.messageID componentsSeparatedByString:@"@"] objectAtIndex:0];
+    // Configure the cell...
     
     return cell;
 }
@@ -207,22 +162,16 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    NewsGroup *newsGroup = [self getNewsGroupAtIndexPath:indexPath];
-    NSArray *headers = [NewsGroupParser retrieveHeaders:conn andNewsGroup:newsGroup];
-        NSLog([NSString stringWithFormat:@"Headers retain: %d", [headers retainCount]]);
-    for (ArticleHeader *header  in headers) {
-//        NSLog([NSString stringWithFormat:@"path:%@", header.path]);
-//        NSLog([NSString stringWithFormat:@"mid:%@", header.messageID]);
-//        NSLog([NSString stringWithFormat:@"newsgroup:%@", header.newsgroup]);
-//        NSLog([NSString stringWithFormat:@"xref:%@", header.xref]);
-//        NSLog([NSString stringWithFormat:@"user:%@", header.cowUser]);
-                NSLog([NSString stringWithFormat:@"Header retain: %d", [header retainCount]]);
-    }
-    
-    if ([headers count ] > 0) {
-        SingleGroupViewController *singleGroupView = [[[SingleGroupViewController alloc] initWithMailHeaders:headers andSSLConnection:conn] autorelease];
-        [[self navigationController] pushViewController:singleGroupView animated:YES];
-    }
+    // Navigation logic may go here. Create and push another view controller.
+    /*
+     <#DetailViewController#> *detailViewController = [[<#DetailViewController#> alloc] initWithNibName:@"<#Nib name#>" bundle:nil];
+     // ...
+     // Pass the selected object to the new view controller.
+     [self.navigationController pushViewController:detailViewController animated:YES];
+     [detailViewController release];
+     */
 }
+
+
 
 @end
